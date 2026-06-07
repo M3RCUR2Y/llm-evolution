@@ -2763,6 +2763,26 @@
     ]
   },
   {
+    "id": "deepseek-v4-pro",
+    "name": "DeepSeek-V4-Pro",
+    "company": "DeepSeek",
+    "origin": "cn",
+    "date": "2026-04",
+    "params": "1.6T",
+    "flagship": true,
+    "desc": "V4系列旗舰，1.6万亿参数，1M上下文窗口，MIT协议预览版。",
+    "tags": [
+      "1.6T",
+      "旗舰",
+      "1M上下文",
+      "MIT"
+    ],
+    "open_source": true,
+    "modalities": [
+      "text"
+    ]
+  },
+  {
     "id": "gemini35-flash",
     "name": "Gemini 3.5 Flash",
     "company": "Google",
