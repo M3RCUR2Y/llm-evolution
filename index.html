@@ -33,7 +33,7 @@
 
   /* ===== Header ===== */
   .header {
-    padding: 40px 48px 16px;
+    padding: 40px 48px 12px;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -60,9 +60,12 @@
   .toolbar {
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 12px 48px;
-    flex-wrap: wrap;
+    gap: 12px;
+    padding: 8px 48px;
+    flex-wrap: nowrap;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    border-top: 1px solid var(--border);
   }
 
   .search-wrap {
@@ -85,10 +88,10 @@
 
   #searchInput {
     width: 100%;
-    padding: 8px 80px 8px 36px;
-    border-radius: 8px;
+    padding: 7px 80px 7px 36px;
+    border-radius: 6px;
     border: 1px solid var(--border);
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
     color: var(--text-primary);
     font-size: 13px;
     font-family: inherit;
@@ -115,17 +118,17 @@
 
   .view-toggle {
     display: flex;
-    gap: 4px;
-    background: var(--bg-secondary);
+    gap: 2px;
+    background: var(--bg-primary);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 3px;
+    border-radius: 6px;
+    padding: 2px;
   }
 
   .view-btn {
-    padding: 6px 14px;
+    padding: 5px 12px;
     border: none;
-    border-radius: 6px;
+    border-radius: 5px;
     background: transparent;
     color: var(--text-secondary);
     font-size: 12px;
@@ -162,7 +165,7 @@
   .stats-bar {
     display: flex;
     gap: 32px;
-    padding: 12px 48px;
+    padding: 14px 48px;
     border-bottom: 1px solid var(--border);
   }
 
@@ -173,13 +176,24 @@
   /* ===== Filters ===== */
   .filters {
     display: flex;
-    gap: 12px;
-    padding: 16px 48px;
+    gap: 10px;
+    padding: 12px 48px;
     flex-wrap: wrap;
     align-items: center;
   }
 
   .filter-group { display: flex; gap: 6px; flex-wrap: wrap; }
+  .filter-group.scrollable {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    max-width: 600px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+    padding-bottom: 4px;
+  }
+  .filter-group.scrollable::-webkit-scrollbar { height: 4px; }
+  .filter-group.scrollable::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .filter-group.scrollable::-webkit-scrollbar-track { background: transparent; }
 
   .filter-label {
     font-size: 12px;
@@ -191,8 +205,8 @@
   }
 
   .filter-btn {
-    padding: 6px 14px;
-    border-radius: 20px;
+    padding: 5px 12px;
+    border-radius: 16px;
     border: 1px solid var(--border);
     background: transparent;
     color: var(--text-secondary);
@@ -216,7 +230,7 @@
 
   /* ===== Timeline Container ===== */
   .timeline-container {
-    padding: 24px 48px 120px;
+    padding: 32px 48px 120px;
     overflow-x: auto;
     overflow-y: visible;
     position: relative;
@@ -233,15 +247,16 @@
     left: 0;
     top: 0;
     bottom: 0;
-    width: 60px;
+    width: 36px;
     z-index: 1;
     pointer-events: none;
     display: flex;
     align-items: flex-end;
+    opacity: 0.6;
   }
 
   .sparkline-wrap canvas {
-    width: 60px;
+    width: 36px;
     height: 100%;
   }
 
@@ -250,7 +265,7 @@
     display: flex;
     position: relative;
     z-index: 10;
-    margin-left: 180px;
+    margin-left: 140px;
     height: 40px;
     align-items: flex-end;
     border-bottom: 1px solid var(--border);
@@ -285,7 +300,7 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 180px;
+    left: 140px;
     right: 0;
     pointer-events: none;
     z-index: 0;
@@ -304,7 +319,7 @@
   /* ===== Company Rows ===== */
   .company-row {
     display: flex;
-    min-height: 72px;
+    min-height: 80px;
     border-bottom: 1px solid rgba(30, 41, 59, 0.5);
     transition: background 0.3s;
     position: relative;
@@ -313,8 +328,8 @@
   .company-row:hover { background: rgba(59, 130, 246, 0.03); }
 
   .company-label {
-    width: 180px;
-    min-width: 180px;
+    width: 140px;
+    min-width: 140px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -327,13 +342,13 @@
   }
 
   .company-logo {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 700;
     color: #fff;
     flex-shrink: 0;
@@ -389,8 +404,8 @@
   }
 
   .model-dot {
-    width: 14px;
-    height: 14px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     border: 2px solid;
     position: relative;
@@ -399,14 +414,14 @@
 
   .model-node:hover .model-dot { box-shadow: 0 0 20px var(--glow); }
 
-  .model-dot.flagship { width: 20px; height: 20px; border-width: 3px; }
+  .model-dot.flagship { width: 14px; height: 14px; border-width: 3px; }
 
   .model-name {
     position: absolute;
-    top: -22px;
+    top: -18px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 500;
     white-space: nowrap;
     color: var(--text-secondary);
@@ -418,7 +433,7 @@
 
   .model-year-tag {
     position: absolute;
-    bottom: -20px;
+    bottom: -16px;
     left: 50%;
     transform: translateX(-50%);
     font-size: 9px;
@@ -448,10 +463,10 @@
   /* --- Compare checkbox --- */
   .compare-check {
     position: absolute;
-    top: -20px;
-    right: -18px;
-    width: 16px;
-    height: 16px;
+    top: -16px;
+    right: -14px;
+    width: 14px;
+    height: 14px;
     border-radius: 3px;
     border: 1.5px solid var(--text-muted);
     background: var(--bg-secondary);
@@ -492,8 +507,8 @@
   .evo-line {
     fill: none;
     stroke-width: 1.5;
-    opacity: 0.25;
-    transition: opacity 0.3s;
+    opacity: 0.08;
+    transition: opacity 0.4s;
   }
 
   /* ===== Tooltip ===== */
@@ -739,13 +754,13 @@
   .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-secondary); }
 
   .legend-dot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     border: 2px solid;
   }
 
-  .legend-dot.flagship { width: 14px; height: 14px; border-width: 3px; }
+  .legend-dot.flagship { width: 12px; height: 12px; border-width: 3px; }
 
   /* ===== Animations ===== */
   @keyframes fadeIn {
@@ -778,11 +793,12 @@
       padding-left: 16px;
       padding-right: 16px;
     }
-    .company-label { width: 120px; min-width: 120px; }
-    .year-axis { margin-left: 120px; }
-    .year-bands { left: 120px; }
+    .company-label { width: 100px; min-width: 100px; }
+    .year-axis { margin-left: 100px; }
+    .year-bands { left: 100px; }
     .compare-panel { padding: 16px; }
     .kbd-hint { display: none; }
+    .filter-group.scrollable { max-width: 100%; }
   }
 </style>
 </head>
@@ -818,7 +834,7 @@
   <div class="filter-group" id="regionFilters"></div>
   <div class="filter-separator"></div>
   <span class="filter-label">公司</span>
-  <div class="filter-group" id="companyFilters"></div>
+  <div class="filter-group scrollable" id="companyFilters"></div>
   <div class="filter-separator"></div>
   <span class="filter-label">类型</span>
   <div class="filter-group" id="sourceFilters"></div>
@@ -1165,7 +1181,7 @@ function renderTimeline() {
     Object.values(monthGroups).forEach(group => {
       if (group.length > 1) {
         group.forEach((m, i) => {
-          offsetMap[m.id] = (i - (group.length - 1) / 2) * 28;
+          offsetMap[m.id] = (i - (group.length - 1) / 2) * 20;
         });
       }
     });
@@ -1221,6 +1237,21 @@ function renderTimeline() {
     });
 
     row.appendChild(track);
+
+    // Hover to reveal evolution lines for this company
+    row.addEventListener('mouseenter', () => {
+      document.querySelectorAll(`.evo-line[data-company="${company}"]`).forEach(p => {
+        p.style.opacity = '0.35';
+        p.style.strokeWidth = '2';
+      });
+    });
+    row.addEventListener('mouseleave', () => {
+      document.querySelectorAll(`.evo-line[data-company="${company}"]`).forEach(p => {
+        p.style.opacity = '';
+        p.style.strokeWidth = '';
+      });
+    });
+
     body.appendChild(row);
   });
 
@@ -1272,6 +1303,7 @@ function drawEvolutionLines() {
       path.setAttribute('d', `M ${x1} ${y1} C ${cpx} ${y1}, ${cpx} ${y2}, ${x2} ${y2}`);
       path.setAttribute('class', 'evo-line');
       path.setAttribute('stroke', cfg.color);
+      path.dataset.company = company;
       svg.appendChild(path);
     }
   });
@@ -1284,7 +1316,7 @@ function drawEvolutionLines() {
 function drawSparkline() {
   const canvas = document.getElementById('sparklineCanvas');
   const container = document.getElementById('timelineScroll');
-  canvas.width = 60;
+  canvas.width = 36;
   canvas.height = container.scrollHeight;
   const ctx = canvas.getContext('2d');
 
