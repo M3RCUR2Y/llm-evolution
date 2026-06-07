@@ -1,0 +1,148 @@
+{
+  "sources": [
+    {
+      "company": "OpenAI",
+      "region": "us",
+      "urls": [
+        "https://openai.com/news",
+        "https://platform.openai.com/docs/models"
+      ],
+      "github": "https://github.com/openai"
+    },
+    {
+      "company": "Anthropic",
+      "region": "us",
+      "urls": [
+        "https://www.anthropic.com/news"
+      ],
+      "github": "https://github.com/anthropics"
+    },
+    {
+      "company": "Google",
+      "region": "us",
+      "urls": [
+        "https://blog.google/technology/ai/",
+        "https://ai.google.dev/gemini-api/docs/models"
+      ],
+      "github": "https://github.com/google-deepmind"
+    },
+    {
+      "company": "Meta",
+      "region": "us",
+      "urls": [
+        "https://ai.meta.com/blog/",
+        "https://llama.meta.com"
+      ],
+      "github": "https://github.com/meta-llama"
+    },
+    {
+      "company": "xAI",
+      "region": "us",
+      "urls": [
+        "https://x.ai/blog"
+      ],
+      "github": "https://github.com/xai-org"
+    },
+    {
+      "company": "Mistral AI",
+      "region": "eu",
+      "urls": [
+        "https://mistral.ai/news/"
+      ],
+      "github": "https://github.com/mistralai"
+    },
+    {
+      "company": "Microsoft",
+      "region": "us",
+      "urls": [
+        "https://azure.microsoft.com/en-us/blog/",
+        "https://huggingface.co/microsoft"
+      ],
+      "github": "https://github.com/microsoft"
+    },
+    {
+      "company": "DeepSeek",
+      "region": "cn",
+      "urls": [
+        "https://api-docs.deepseek.com/news"
+      ],
+      "github": "https://github.com/deepseek-ai"
+    },
+    {
+      "company": "阿里巴巴",
+      "urls": [
+        "https://qwenlm.github.io",
+        "https://help.aliyun.com/zh/model-studio/getting-started/models"
+      ],
+      "github": "https://github.com/QwenLM"
+    },
+    {
+      "company": "小米",
+      "region": "cn",
+      "urls": [
+        "https://mimo.xiaomi.com",
+        "https://mimo.mi.com"
+      ],
+      "github": "https://github.com/XiaomiMiMo"
+    },
+    {
+      "company": "百度",
+      "region": "cn",
+      "urls": [
+        "https://cloud.baidu.com/doc/WENXINWORKSHOP/s/Fm2vrveyu"
+      ]
+    },
+    {
+      "company": "字节跳动",
+      "region": "cn",
+      "urls": [
+        "https://www.volcengine.com/docs/82379"
+      ]
+    },
+    {
+      "company": "智谱AI",
+      "region": "cn",
+      "urls": [
+        "https://open.bigmodel.cn/dev/howuse/model"
+      ],
+      "github": "https://github.com/THUDM"
+    },
+    {
+      "company": "月之暗面",
+      "region": "cn",
+      "urls": [
+        "https://platform.moonshot.cn/docs/intro"
+      ]
+    },
+    {
+      "company": "零一万物",
+      "region": "cn",
+      "urls": [
+        "https://platform.lingyiwanwu.com/docs/api-reference"
+      ]
+    },
+    {
+      "company": "百川智能",
+      "region": "cn",
+      "urls": [
+        "https://platform.baichuan-ai.com/docs"
+      ]
+    },
+    {
+      "company": "面壁智能",
+      "region": "cn",
+      "urls": [
+        "https://github.com/OpenBMB"
+      ],
+      "github": "https://github.com/OpenBMB"
+    },
+    {
+      "company": "Cohere",
+      "region": "us",
+      "urls": [
+        "https://docs.cohere.com/docs/models"
+      ],
+      "github": "https://github.com/cohere-ai"
+    }
+  ]
+}
