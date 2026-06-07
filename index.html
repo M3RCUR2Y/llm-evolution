@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,63 +9,135 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  :root {
-    --bg-primary: #0a0e17;
-    --bg-secondary: #111827;
-    --bg-card: #1a2235;
-    --bg-hover: #243049;
-    --text-primary: #e2e8f0;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    --border: #1e293b;
-    --accent: #3b82f6;
-    --glow: rgba(59, 130, 246, 0.3);
+  /* ===== Theme Variables ===== */
+  :root, [data-theme="light"] {
+    --bg-primary: #FAFAFA;
+    --bg-secondary: #FFFFFF;
+    --bg-tertiary: #F3F4F6;
+    --bg-hover: #E5E7EB;
+    --text-primary: #1A1A1A;
+    --text-secondary: #6B7280;
+    --text-tertiary: #9CA3AF;
+    --border: #E5E7EB;
+    --accent: #6366F1;
+    --accent-hover: #4F46E5;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.1);
+    --band-dim: rgba(0,0,0,0.03);
+    --band-bright: transparent;
+    --dim-opacity: 0.4;
+    --company-alpha: 0.5;
+    --search-ring: rgba(99,102,241,0.4);
+    --compare-panel-shadow: 0 -4px 16px rgba(0,0,0,0.08);
+  }
+
+  [data-theme="dark"] {
+    --bg-primary: #0F1117;
+    --bg-secondary: #1A1B23;
+    --bg-tertiary: #252630;
+    --bg-hover: #2D2E3A;
+    --text-primary: #E8E8ED;
+    --text-secondary: #9CA3AF;
+    --text-tertiary: #6B7280;
+    --border: #2D2E3A;
+    --accent: #818CF8;
+    --accent-hover: #6366F1;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.2);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.3);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.4);
+    --band-dim: rgba(0,0,0,0.18);
+    --band-bright: rgba(129,140,248,0.03);
     --dim-opacity: 0.45;
+    --company-alpha: 1;
+    --search-ring: rgba(129,140,248,0.5);
+    --compare-panel-shadow: 0 -4px 16px rgba(0,0,0,0.4);
   }
 
   body {
-    font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+    font-family: 'Inter', 'Noto Sans SC', -apple-system, system-ui, sans-serif;
     background: var(--bg-primary);
     color: var(--text-primary);
     overflow-x: hidden;
     min-height: 100vh;
+    transition: background 0.3s, color 0.3s;
   }
 
   /* ===== Header ===== */
   .header {
-    padding: 40px 48px 12px;
+    padding: clamp(24px, 3vw, 40px) clamp(16px, 3vw, 48px) clamp(8px, 1vw, 12px);
     position: sticky;
     top: 0;
     z-index: 100;
-    background: linear-gradient(180deg, var(--bg-primary) 60%, transparent);
-    backdrop-filter: blur(12px);
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.3s, border-color 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
   }
 
+  .header-left { flex: 1; min-width: 0; }
+
   .header h1 {
-    font-size: 32px;
+    font-size: clamp(1.5rem, 2.5vw, 2.25rem);
     font-weight: 700;
-    background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 6px;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
   }
 
   .header p {
     color: var(--text-secondary);
-    font-size: 14px;
+    font-size: clamp(0.75rem, 1vw, 0.875rem);
     font-weight: 300;
+    line-height: 1.5;
   }
 
-  /* ===== Toolbar (search + view toggle) ===== */
+  /* ===== Theme Toggle ===== */
+  .theme-toggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .theme-toggle:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--bg-tertiary);
+  }
+
+  .theme-toggle svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .theme-toggle .icon-sun { display: none; }
+  .theme-toggle .icon-moon { display: block; }
+  [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+  [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
+  /* ===== Toolbar ===== */
   .toolbar {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 8px 48px;
+    padding: 8px clamp(16px, 3vw, 48px);
     flex-wrap: nowrap;
     background: var(--bg-secondary);
     border-bottom: 1px solid var(--border);
-    border-top: 1px solid var(--border);
+    transition: background 0.3s, border-color 0.3s;
   }
 
   .search-wrap {
@@ -82,7 +154,7 @@
     transform: translateY(-50%);
     width: 16px;
     height: 16px;
-    color: var(--text-muted);
+    color: var(--text-tertiary);
     pointer-events: none;
   }
 
@@ -93,25 +165,22 @@
     border: 1px solid var(--border);
     background: var(--bg-primary);
     color: var(--text-primary);
-    font-size: 13px;
+    font-size: clamp(0.75rem, 1vw, 0.875rem);
     font-family: inherit;
     outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition: border-color 0.2s;
   }
 
-  #searchInput::placeholder { color: var(--text-muted); }
-  #searchInput:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px var(--glow);
-  }
+  #searchInput::placeholder { color: var(--text-tertiary); }
+  #searchInput:focus { border-color: var(--accent); }
 
   .search-count {
     position: absolute;
     right: 12px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 11px;
-    color: var(--text-muted);
+    font-size: clamp(0.5625rem, 0.75vw, 0.6875rem);
+    color: var(--text-tertiary);
     pointer-events: none;
     font-variant-numeric: tabular-nums;
   }
@@ -131,7 +200,7 @@
     border-radius: 5px;
     background: transparent;
     color: var(--text-secondary);
-    font-size: 12px;
+    font-size: clamp(0.6875rem, 0.9vw, 0.75rem);
     font-family: inherit;
     cursor: pointer;
     transition: all 0.2s;
@@ -145,9 +214,10 @@
   }
 
   .kbd-hint {
-    font-size: 11px;
-    color: var(--text-muted);
+    font-size: clamp(0.5625rem, 0.75vw, 0.6875rem);
+    color: var(--text-tertiary);
     margin-left: auto;
+    white-space: nowrap;
   }
 
   .kbd-hint kbd {
@@ -155,8 +225,8 @@
     padding: 1px 5px;
     border: 1px solid var(--border);
     border-radius: 3px;
-    background: var(--bg-secondary);
-    font-size: 10px;
+    background: var(--bg-tertiary);
+    font-size: clamp(0.5rem, 0.65vw, 0.625rem);
     font-family: inherit;
     margin: 0 1px;
   }
@@ -164,22 +234,37 @@
   /* ===== Stats Bar ===== */
   .stats-bar {
     display: flex;
-    gap: 32px;
-    padding: 14px 48px;
+    gap: clamp(16px, 2.5vw, 32px);
+    padding: clamp(10px, 1.2vw, 14px) clamp(16px, 3vw, 48px);
     border-bottom: 1px solid var(--border);
+    background: var(--bg-secondary);
+    transition: background 0.3s, border-color 0.3s;
   }
 
   .stat { display: flex; flex-direction: column; }
-  .stat-value { font-size: 24px; font-weight: 700; color: var(--accent); }
-  .stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+  .stat-value {
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1.2;
+  }
+  .stat-label {
+    font-size: clamp(0.5625rem, 0.8vw, 0.6875rem);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
 
   /* ===== Filters ===== */
   .filters {
     display: flex;
     gap: 10px;
-    padding: 12px 48px;
+    padding: clamp(8px, 1vw, 12px) clamp(16px, 3vw, 48px);
     flex-wrap: wrap;
     align-items: center;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-secondary);
+    transition: background 0.3s, border-color 0.3s;
   }
 
   .filter-group { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -196,8 +281,8 @@
   .filter-group.scrollable::-webkit-scrollbar-track { background: transparent; }
 
   .filter-label {
-    font-size: 12px;
-    color: var(--text-muted);
+    font-size: clamp(0.625rem, 0.8vw, 0.75rem);
+    color: var(--text-tertiary);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     align-self: center;
@@ -210,7 +295,7 @@
     border: 1px solid var(--border);
     background: transparent;
     color: var(--text-secondary);
-    font-size: 12px;
+    font-size: clamp(0.625rem, 0.8vw, 0.75rem);
     font-family: inherit;
     cursor: pointer;
     transition: all 0.2s;
@@ -228,12 +313,106 @@
     margin: 0 4px;
   }
 
+  /* ===== Zoom Bar ===== */
+  .zoom-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px clamp(16px, 3vw, 48px);
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .zoom-bar label {
+    font-size: clamp(0.625rem, 0.8vw, 0.75rem);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  .zoom-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    font-size: 16px;
+    font-family: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    line-height: 1;
+  }
+
+  .zoom-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  #zoomSlider {
+    flex: 1;
+    max-width: 300px;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: var(--border);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  #zoomSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg-secondary);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+
+  #zoomSlider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+  }
+
+  #zoomSlider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg-secondary);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+  }
+
+  .zoom-label {
+    font-size: clamp(0.625rem, 0.8vw, 0.75rem);
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    min-width: 180px;
+    text-align: right;
+  }
+
   /* ===== Timeline Container ===== */
   .timeline-container {
-    padding: 32px 48px 120px;
-    overflow-x: auto;
+    padding: clamp(16px, 2.5vw, 32px) 0 120px;
+    overflow-x: hidden;
     overflow-y: visible;
     position: relative;
+    cursor: grab;
+  }
+
+  .timeline-container.panning {
+    cursor: grabbing;
+    user-select: none;
   }
 
   .timeline-scroll {
@@ -273,9 +452,9 @@
 
   .year-label {
     text-align: center;
-    font-size: 13px;
+    font-size: clamp(0.6875rem, 0.9vw, 0.8125rem);
     font-weight: 600;
-    color: var(--text-muted);
+    color: var(--text-tertiary);
     padding-bottom: 8px;
     min-width: 80px;
     position: absolute;
@@ -295,7 +474,7 @@
     background: var(--border);
   }
 
-  /* ===== Year band overlays (visual rhythm) ===== */
+  /* ===== Year bands ===== */
   .year-bands {
     position: absolute;
     top: 0;
@@ -313,19 +492,19 @@
     transition: background 0.3s;
   }
 
-  .year-band.dim { background: rgba(0,0,0,0.18); }
-  .year-band.bright { background: rgba(59,130,246,0.03); }
+  .year-band.dim { background: var(--band-dim); }
+  .year-band.bright { background: var(--band-bright); }
 
   /* ===== Company Rows ===== */
   .company-row {
     display: flex;
     min-height: 80px;
-    border-bottom: 1px solid rgba(30, 41, 59, 0.5);
+    border-bottom: 1px solid var(--border);
     transition: background 0.3s;
     position: relative;
   }
 
-  .company-row:hover { background: rgba(59, 130, 246, 0.03); }
+  .company-row:hover { background: var(--bg-tertiary); }
 
   .company-label {
     width: 140px;
@@ -339,6 +518,7 @@
     z-index: 5;
     background: var(--bg-primary);
     border-right: 1px solid var(--border);
+    transition: background 0.3s, border-color 0.3s;
   }
 
   .company-logo {
@@ -348,7 +528,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size: clamp(0.625rem, 0.8vw, 0.75rem);
     font-weight: 700;
     color: #fff;
     flex-shrink: 0;
@@ -357,7 +537,7 @@
   .company-info { display: flex; flex-direction: column; min-width: 0; }
 
   .company-name {
-    font-size: 13px;
+    font-size: clamp(0.6875rem, 0.9vw, 0.8125rem);
     font-weight: 600;
     color: var(--text-primary);
     white-space: nowrap;
@@ -366,8 +546,8 @@
   }
 
   .company-origin {
-    font-size: 10px;
-    color: var(--text-muted);
+    font-size: clamp(0.5rem, 0.65vw, 0.625rem);
+    color: var(--text-tertiary);
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
@@ -386,7 +566,8 @@
     top: 0;
     bottom: 0;
     width: 1px;
-    background: rgba(30, 41, 59, 0.4);
+    background: var(--border);
+    opacity: 0.5;
   }
 
   /* ===== Model Node ===== */
@@ -395,12 +576,11 @@
     transform: translateX(-50%);
     cursor: pointer;
     z-index: 2;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: z-index 0s;
   }
 
   .model-node:hover {
     z-index: 20;
-    transform: translateX(-50%) scale(1.15);
   }
 
   .model-dot {
@@ -409,10 +589,10 @@
     border-radius: 50%;
     border: 2px solid;
     position: relative;
-    transition: all 0.3s;
+    transition: transform 0.2s;
   }
 
-  .model-node:hover .model-dot { box-shadow: 0 0 20px var(--glow); }
+  .model-node:hover .model-dot { transform: scale(1.2); }
 
   .model-dot.flagship { width: 14px; height: 14px; border-width: 3px; }
 
@@ -421,7 +601,7 @@
     top: -18px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 9px;
+    font-size: clamp(0.5rem, 0.7vw, 0.625rem);
     font-weight: 500;
     white-space: nowrap;
     color: var(--text-secondary);
@@ -436,8 +616,8 @@
     bottom: -16px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 9px;
-    color: var(--text-muted);
+    font-size: clamp(0.5rem, 0.7vw, 0.625rem);
+    color: var(--text-tertiary);
     white-space: nowrap;
     opacity: 0;
     transition: opacity 0.2s;
@@ -445,18 +625,18 @@
 
   .model-node:hover .model-year-tag { opacity: 1; }
 
-  /* --- Search glow / dim --- */
+  /* --- Search highlight --- */
   .model-node.search-dim {
     opacity: 0.15;
     filter: grayscale(0.6);
   }
 
   .model-node.search-match .model-dot {
-    box-shadow: 0 0 16px 4px rgba(59,130,246,0.6), 0 0 40px rgba(59,130,246,0.3);
+    box-shadow: 0 0 0 3px var(--search-ring);
   }
 
   .model-node.search-match .model-name {
-    color: #93c5fd;
+    color: var(--accent);
     font-weight: 600;
   }
 
@@ -468,7 +648,7 @@
     width: 14px;
     height: 14px;
     border-radius: 3px;
-    border: 1.5px solid var(--text-muted);
+    border: 1.5px solid var(--text-tertiary);
     background: var(--bg-secondary);
     cursor: pointer;
     opacity: 0;
@@ -487,13 +667,13 @@
   }
 
   .compare-check.checked::after {
-    content: '✓';
+    content: '\2713';
     font-size: 10px;
     color: #fff;
     font-weight: 700;
   }
 
-  /* ===== Evolution lines (SVG overlay) ===== */
+  /* ===== Evolution lines ===== */
   .evo-lines-svg {
     position: absolute;
     top: 0;
@@ -515,27 +695,52 @@
   .tooltip {
     position: fixed;
     z-index: 1000;
-    background: var(--bg-card);
+    background: var(--bg-secondary);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 16px 20px;
     max-width: 360px;
     pointer-events: none;
     opacity: 0;
     transform: translateY(8px);
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    box-shadow: var(--shadow-lg);
   }
 
   .tooltip.visible { opacity: 1; transform: translateY(0); }
 
   .tooltip-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-  .tooltip-badge { padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; color: #fff; }
-  .tooltip-title { font-size: 16px; font-weight: 700; }
-  .tooltip-date { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
-  .tooltip-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 10px; }
+  .tooltip-badge {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: clamp(0.5rem, 0.65vw, 0.625rem);
+    font-weight: 600;
+    color: #fff;
+  }
+  .tooltip-title {
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    font-weight: 700;
+  }
+  .tooltip-date {
+    font-size: clamp(0.625rem, 0.8vw, 0.75rem);
+    color: var(--text-tertiary);
+    margin-bottom: 8px;
+  }
+  .tooltip-desc {
+    font-size: clamp(0.6875rem, 0.9vw, 0.8125rem);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
   .tooltip-tags { display: flex; flex-wrap: wrap; gap: 4px; }
-  .tooltip-tag { padding: 2px 8px; border-radius: 10px; font-size: 10px; background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .tooltip-tag {
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: clamp(0.5rem, 0.65vw, 0.625rem);
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+  }
 
   .tooltip-meta {
     display: flex;
@@ -547,7 +752,7 @@
   .tooltip-meta-badge {
     padding: 2px 8px;
     border-radius: 10px;
-    font-size: 10px;
+    font-size: clamp(0.5rem, 0.65vw, 0.625rem);
     border: 1px solid;
   }
 
@@ -558,12 +763,12 @@
     left: 0;
     right: 0;
     z-index: 200;
-    background: var(--bg-card);
+    background: var(--bg-secondary);
     border-top: 1px solid var(--border);
-    box-shadow: 0 -10px 40px rgba(0,0,0,0.5);
+    box-shadow: var(--compare-panel-shadow);
     transform: translateY(100%);
-    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
-    padding: 20px 48px;
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), background 0.3s;
+    padding: 20px clamp(16px, 3vw, 48px);
   }
 
   .compare-panel.visible { transform: translateY(0); }
@@ -575,12 +780,15 @@
     margin-bottom: 16px;
   }
 
-  .compare-header h3 { font-size: 14px; font-weight: 600; }
+  .compare-header h3 {
+    font-size: clamp(0.75rem, 1vw, 0.875rem);
+    font-weight: 600;
+  }
 
   .compare-close {
     background: none;
     border: none;
-    color: var(--text-muted);
+    color: var(--text-tertiary);
     font-size: 18px;
     cursor: pointer;
     padding: 4px 8px;
@@ -600,21 +808,45 @@
     flex: 1;
     min-width: 220px;
     max-width: 320px;
-    background: var(--bg-secondary);
+    background: var(--bg-tertiary);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 14px 16px;
     position: relative;
   }
 
-  .compare-card-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
-  .compare-card-company { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; }
-  .compare-card-row { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px; }
-  .compare-card-label { color: var(--text-muted); }
+  .compare-card-name {
+    font-size: clamp(0.75rem, 1vw, 0.875rem);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .compare-card-company {
+    font-size: clamp(0.5625rem, 0.75vw, 0.6875rem);
+    color: var(--text-tertiary);
+    margin-bottom: 8px;
+  }
+  .compare-card-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: clamp(0.625rem, 0.8vw, 0.75rem);
+    margin-bottom: 4px;
+  }
+  .compare-card-label { color: var(--text-tertiary); }
   .compare-card-value { color: var(--text-primary); font-weight: 500; }
-  .compare-card-desc { font-size: 11px; color: var(--text-secondary); line-height: 1.5; margin-top: 8px; }
+  .compare-card-desc {
+    font-size: clamp(0.5625rem, 0.75vw, 0.6875rem);
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-top: 8px;
+  }
   .compare-card-tags { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 8px; }
-  .compare-card-tag { padding: 1px 6px; border-radius: 8px; font-size: 9px; background: rgba(59,130,246,0.12); color: #93c5fd; }
+  .compare-card-tag {
+    padding: 1px 6px;
+    border-radius: 8px;
+    font-size: clamp(0.4375rem, 0.6vw, 0.5625rem);
+    background: var(--bg-hover);
+    color: var(--text-secondary);
+  }
 
   .compare-remove {
     position: absolute;
@@ -622,19 +854,19 @@
     right: 8px;
     background: none;
     border: none;
-    color: var(--text-muted);
+    color: var(--text-tertiary);
     cursor: pointer;
     font-size: 14px;
     padding: 2px 6px;
     border-radius: 4px;
   }
 
-  .compare-remove:hover { background: rgba(239,68,68,0.2); color: #f87171; }
+  .compare-remove:hover { background: rgba(239,68,68,0.15); color: #f87171; }
 
   /* ===== Table View ===== */
   .table-view {
     display: none;
-    padding: 0 48px 120px;
+    padding: 0 clamp(16px, 3vw, 48px) 120px;
   }
 
   .table-view.visible { display: block; }
@@ -642,15 +874,15 @@
   .data-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 13px;
+    font-size: clamp(0.6875rem, 0.9vw, 0.8125rem);
   }
 
   .data-table th {
     text-align: left;
     padding: 10px 12px;
     border-bottom: 2px solid var(--border);
-    color: var(--text-muted);
-    font-size: 11px;
+    color: var(--text-tertiary);
+    font-size: clamp(0.5625rem, 0.75vw, 0.6875rem);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     cursor: pointer;
@@ -668,12 +900,12 @@
 
   .data-table td {
     padding: 10px 12px;
-    border-bottom: 1px solid rgba(30,41,59,0.3);
+    border-bottom: 1px solid var(--border);
     vertical-align: middle;
   }
 
   .data-table tr { transition: background 0.2s; }
-  .data-table tbody tr:hover { background: rgba(59,130,246,0.05); }
+  .data-table tbody tr:hover { background: var(--bg-tertiary); }
 
   .table-company-badge {
     display: inline-flex;
@@ -692,9 +924,9 @@
     display: inline-block;
     padding: 1px 7px;
     border-radius: 8px;
-    font-size: 10px;
-    background: rgba(59,130,246,0.12);
-    color: #93c5fd;
+    font-size: clamp(0.5rem, 0.65vw, 0.625rem);
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
     margin: 1px 2px;
   }
 
@@ -702,21 +934,21 @@
     display: inline-block;
     padding: 2px 8px;
     border-radius: 10px;
-    font-size: 10px;
+    font-size: clamp(0.5rem, 0.65vw, 0.625rem);
     font-weight: 600;
   }
 
-  .table-source-badge.open { background: rgba(16,185,129,0.15); color: #34d399; }
-  .table-source-badge.closed { background: rgba(239,68,68,0.12); color: #f87171; }
-  .table-source-badge.unknown { background: rgba(100,116,139,0.15); color: #94a3b8; }
+  .table-source-badge.open { background: rgba(16,185,129,0.15); color: #10b981; }
+  .table-source-badge.closed { background: rgba(239,68,68,0.1); color: #ef4444; }
+  .table-source-badge.unknown { background: var(--bg-tertiary); color: var(--text-tertiary); }
 
   .table-modality-badge {
     display: inline-block;
     padding: 1px 6px;
     border-radius: 8px;
-    font-size: 9px;
-    background: rgba(168,85,247,0.12);
-    color: #c4b5fd;
+    font-size: clamp(0.4375rem, 0.6vw, 0.5625rem);
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
     margin: 1px;
   }
 
@@ -741,17 +973,23 @@
     display: flex;
     gap: 20px;
     padding: 10px 24px;
-    background: rgba(17, 24, 39, 0.95);
+    background: var(--bg-secondary);
     border: 1px solid var(--border);
     border-radius: 24px;
-    backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-md);
     z-index: 50;
-    transition: bottom 0.3s;
+    transition: bottom 0.3s, background 0.3s, border-color 0.3s;
   }
 
   .legend.shifted-up { bottom: 90px; }
 
-  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-secondary); }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: clamp(0.5625rem, 0.75vw, 0.6875rem);
+    color: var(--text-secondary);
+  }
 
   .legend-dot {
     width: 8px;
@@ -764,32 +1002,43 @@
 
   /* ===== Animations ===== */
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(12px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .company-row { animation: fadeIn 0.5s ease-out both; }
-  .model-node { animation: fadeIn 0.4s ease-out both; }
+  .company-row { animation: fadeIn 0.4s ease-out both; }
 
   /* ===== Footer ===== */
   .footer {
-    padding: 20px 48px;
+    padding: 20px clamp(16px, 3vw, 48px);
     border-top: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 12px;
-    font-size: 12px;
-    color: var(--text-muted);
+    font-size: clamp(0.625rem, 0.8vw, 0.75rem);
+    color: var(--text-tertiary);
+    background: var(--bg-secondary);
+    transition: background 0.3s, border-color 0.3s;
   }
 
-  .footer a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
-  .footer a:hover { color: #93c5fd; text-decoration: underline; }
+  .footer a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer a:hover { text-decoration: underline; }
 
   /* ===== Responsive ===== */
+  @media (max-width: 1024px) {
+    .toolbar { flex-wrap: wrap; }
+    .kbd-hint { display: none; }
+    .filter-group.scrollable { max-width: 100%; }
+  }
+
   @media (max-width: 768px) {
-    .header, .stats-bar, .filters, .timeline-container, .toolbar, .table-view {
+    .header, .stats-bar, .filters, .toolbar, .zoom-bar, .table-view {
       padding-left: 16px;
       padding-right: 16px;
     }
@@ -797,16 +1046,28 @@
     .year-axis { margin-left: 100px; }
     .year-bands { left: 100px; }
     .compare-panel { padding: 16px; }
-    .kbd-hint { display: none; }
-    .filter-group.scrollable { max-width: 100%; }
+    .zoom-label { display: none; }
   }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <h1>🧠 大模型进化史</h1>
-  <p>LLM Evolution Timeline — 从 GPT-1 到多模态时代，国内外主流大模型的发展轨迹</p>
+  <div class="header-left">
+    <h1>大模型进化史</h1>
+    <p>LLM Evolution Timeline — 从 GPT-1 到多模态时代，国内外主流大模型的发展轨迹</p>
+  </div>
+  <button class="theme-toggle" id="themeToggle" title="切换主题">
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
 </div>
 
 <div class="toolbar">
@@ -816,8 +1077,8 @@
     <span class="search-count" id="searchCount"></span>
   </div>
   <div class="view-toggle">
-    <button class="view-btn active" data-view="timeline">🕐 时间线</button>
-    <button class="view-btn" data-view="table">📋 表格</button>
+    <button class="view-btn active" data-view="timeline">时间线</button>
+    <button class="view-btn" data-view="table">表格</button>
   </div>
   <span class="kbd-hint"><kbd>/</kbd> 搜索 <kbd>Esc</kbd> 清除 <kbd>←</kbd><kbd>→</kbd> 滚动</span>
 </div>
@@ -841,6 +1102,14 @@
   <div class="filter-separator"></div>
   <span class="filter-label">模态</span>
   <div class="filter-group" id="modalityFilters"></div>
+</div>
+
+<div class="zoom-bar">
+  <label>缩放</label>
+  <button class="zoom-btn" id="zoomOut" title="缩小">−</button>
+  <input type="range" id="zoomSlider" min="0" max="1" step="0.002" value="0.5" />
+  <button class="zoom-btn" id="zoomIn" title="放大">+</button>
+  <span class="zoom-label" id="zoomLabel">2025.01 — 2026.12</span>
 </div>
 
 <!-- Timeline View -->
@@ -877,7 +1146,7 @@
 <!-- Compare Panel -->
 <div class="compare-panel" id="comparePanel">
   <div class="compare-header">
-    <h3>📊 模型对比 <span id="compareCount"></span></h3>
+    <h3>模型对比 <span id="compareCount"></span></h3>
     <button class="compare-close" id="compareClose" title="关闭对比面板">✕</button>
   </div>
   <div class="compare-grid" id="compareGrid"></div>
@@ -885,7 +1154,7 @@
 
 <div class="footer">
   <span id="footerUpdated">最后更新：加载中…</span>
-  <a href="https://github.com/LLing486/llm-evolution" target="_blank" rel="noopener">📦 GitHub 仓库</a>
+  <a href="https://github.com/LLing486/llm-evolution" target="_blank" rel="noopener">GitHub 仓库</a>
 </div>
 
 <div class="legend" id="legend">
@@ -894,11 +1163,11 @@
     <span>旗舰模型</span>
   </div>
   <div class="legend-item">
-    <div class="legend-dot" style="border-color: #60a5fa; background: rgba(96,165,250,0.2);"></div>
+    <div class="legend-dot" style="border-color: var(--accent); background: var(--bg-tertiary);"></div>
     <span>重要模型</span>
   </div>
-  <div class="legend-item"><span style="color: #93c5fd;">🇺🇸</span><span>美国</span></div>
-  <div class="legend-item"><span style="color: #f87171;">🇨🇳</span><span>中国</span></div>
+  <div class="legend-item"><span>🇺🇸</span><span>美国</span></div>
+  <div class="legend-item"><span>🇨🇳</span><span>中国</span></div>
   <div class="legend-item"><span>🇪🇺</span><span>欧洲</span></div>
 </div>
 
@@ -913,18 +1182,158 @@ const ORIGIN_LABELS = { us: '美国', cn: '中国', eu: '欧洲' };
 // ===== STATE =====
 let activeRegion = 'all';
 let activeCompany = 'all';
-let activeSource = 'all';   // all | open | closed
-let activeModality = 'all'; // all | text | multimodal
+let activeSource = 'all';
+let activeModality = 'all';
 let searchQuery = '';
-let viewMode = 'timeline';  // timeline | table
-let compareIds = [];         // max 3
+let viewMode = 'timeline';
+let compareIds = [];
 let sortCol = 'date';
-let sortDir = 1; // 1 = asc, -1 = desc
+let sortDir = 1;
 
 let YEAR_MIN, YEAR_MAX, TOTAL_MONTHS;
 
+// ===== ZOOM STATE =====
+let zoomNorm = 0.5;
+let currentPxPerMonth = 80;
+let isPanning = false;
+let panStartX = 0;
+let panStartScrollLeft = 0;
+
+// ===== THEME =====
+function initTheme() {
+  const saved = localStorage.getItem('llm-evolution-theme');
+  const theme = saved || 'light';
+  document.documentElement.dataset.theme = theme;
+}
+
+function toggleTheme() {
+  const current = document.documentElement.dataset.theme;
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem('llm-evolution-theme', next);
+  // Redraw evolution lines since colors may change
+  requestAnimationFrame(() => { drawEvolutionLines(); drawSparkline(); });
+}
+
+// ===== ZOOM FUNCTIONS =====
+function getZoomRange() {
+  const container = document.getElementById('timelineView');
+  const cw = container.clientWidth || 1400;
+  return {
+    min: cw / TOTAL_MONTHS,
+    max: cw / 1
+  };
+}
+
+function zoomNormToPx(zn) {
+  const range = getZoomRange();
+  return range.min * Math.pow(range.max / range.min, Math.max(0, Math.min(1, zn)));
+}
+
+function pxToZoomNorm(px) {
+  const range = getZoomRange();
+  if (range.max <= range.min) return 0.5;
+  const clamped = Math.max(range.min, Math.min(range.max, px));
+  return Math.log(clamped / range.min) / Math.log(range.max / range.min);
+}
+
+function getDefaultPxPerMonth() {
+  const container = document.getElementById('timelineView');
+  const cw = container.clientWidth || 1400;
+  return cw / 24; // 24 months visible by default
+}
+
+function updateZoom(focusClientX) {
+  currentPxPerMonth = zoomNormToPx(zoomNorm);
+
+  const container = document.getElementById('timelineView');
+  const scrollWidth = TOTAL_MONTHS * currentPxPerMonth;
+
+  // If focusClientX provided, keep the month under cursor at same screen position
+  if (focusClientX !== undefined) {
+    const containerRect = container.getBoundingClientRect();
+    const relX = focusClientX - containerRect.left;
+    const monthAtCursor = (container.scrollLeft + relX) / (currentPxPerMonth / zoomNormToPx(zoomNorm + 0.001) > 1 ? currentPxPerMonth : currentPxPerMonth);
+
+    // Recalculate: what month is under the cursor before zoom?
+    // We need the old pxPerMonth to compute this correctly
+    // This is called AFTER zoomNorm is updated, so we use a simpler approach:
+    // Just maintain the center of the viewport
+  }
+
+  // Update all widths
+  document.getElementById('timelineScroll').style.minWidth = scrollWidth + 'px';
+  document.querySelectorAll('.model-track').forEach(t => t.style.minWidth = scrollWidth + 'px');
+  document.getElementById('yearAxis').style.minWidth = scrollWidth + 'px';
+  document.getElementById('yearBands').style.minWidth = scrollWidth + 'px';
+
+  // Update slider
+  document.getElementById('zoomSlider').value = zoomNorm;
+  updateZoomLabel();
+
+  // Redraw
+  drawEvolutionLines();
+  drawSparkline();
+}
+
+function applyZoomWithFocus(oldPxPerMonth, focusClientX) {
+  currentPxPerMonth = zoomNormToPx(zoomNorm);
+
+  const container = document.getElementById('timelineView');
+  const containerRect = container.getBoundingClientRect();
+  const relX = focusClientX - containerRect.left;
+
+  // Month under cursor before zoom
+  const monthAtCursor = (container.scrollLeft + relX) / oldPxPerMonth;
+
+  const scrollWidth = TOTAL_MONTHS * currentPxPerMonth;
+  document.getElementById('timelineScroll').style.minWidth = scrollWidth + 'px';
+  document.querySelectorAll('.model-track').forEach(t => t.style.minWidth = scrollWidth + 'px');
+  document.getElementById('yearAxis').style.minWidth = scrollWidth + 'px';
+  document.getElementById('yearBands').style.minWidth = scrollWidth + 'px';
+
+  // Keep the same month under cursor
+  container.scrollLeft = monthAtCursor * currentPxPerMonth - relX;
+
+  document.getElementById('zoomSlider').value = zoomNorm;
+  updateZoomLabel();
+  drawEvolutionLines();
+  drawSparkline();
+}
+
+function updateZoomLabel() {
+  const container = document.getElementById('timelineView');
+  const scrollLeft = container.scrollLeft;
+  const containerWidth = container.clientWidth;
+
+  const startMonth = scrollLeft / currentPxPerMonth;
+  const endMonth = (scrollLeft + containerWidth) / currentPxPerMonth;
+
+  const startYear = YEAR_MIN + Math.floor(startMonth / 12);
+  const startMo = Math.floor(startMonth % 12) + 1;
+  const endYear = YEAR_MIN + Math.floor(endMonth / 12);
+  const endMo = Math.floor(endMonth % 12) + 1;
+
+  const sy = Math.max(YEAR_MIN, startYear);
+  const sm = Math.max(1, Math.min(12, startMo));
+  const ey = Math.min(YEAR_MAX, endYear);
+  const em = Math.max(1, Math.min(12, endMo));
+
+  document.getElementById('zoomLabel').textContent =
+    `${sy}.${String(sm).padStart(2,'0')} — ${ey}.${String(em).padStart(2,'0')}`;
+}
+
+function scrollToDefaultViewport() {
+  const container = document.getElementById('timelineView');
+  const monthsFromStart = (2025 - YEAR_MIN) * 12;
+  container.scrollLeft = monthsFromStart * currentPxPerMonth;
+  updateZoomLabel();
+}
+
 // ===== INIT =====
 async function init() {
+  initTheme();
+
   try {
     const [modelsRes, companiesRes] = await Promise.all([
       fetch('data/models.json'),
@@ -942,12 +1351,27 @@ async function init() {
 
   readHashState();
   computeTimeRange();
+
+  // Init zoom
+  currentPxPerMonth = getDefaultPxPerMonth();
+  zoomNorm = pxToZoomNorm(currentPxPerMonth);
+
   renderStats();
   renderFilters();
   renderTimeline();
   renderTable();
   updateFooter();
   bindEvents();
+
+  // Sync slider with initial zoom
+  document.getElementById('zoomSlider').value = zoomNorm;
+
+  // Set default viewport after render
+  requestAnimationFrame(() => {
+    scrollToDefaultViewport();
+    drawEvolutionLines();
+    drawSparkline();
+  });
 }
 
 // ===== TIME RANGE =====
@@ -955,9 +1379,9 @@ function computeTimeRange() {
   const dates = MODELS.map(m => { const [y,mo] = m.date.split('-').map(Number); return y*12+mo; });
   const minMonth = Math.min(...dates);
   const maxMonth = Math.max(...dates);
-  YEAR_MIN = Math.floor(minMonth / 12);
-  YEAR_MAX = Math.ceil(maxMonth / 12);
-  TOTAL_MONTHS = (YEAR_MAX - YEAR_MIN) * 12 + 12;
+  YEAR_MIN = Math.floor((minMonth - 1) / 12);
+  YEAR_MAX = Math.floor((maxMonth - 1) / 12);
+  TOTAL_MONTHS = (YEAR_MAX - YEAR_MIN + 1) * 12;
 }
 
 function dateToPercent(dateStr) {
@@ -1003,7 +1427,6 @@ function renderStats() {
 
 // ===== FILTERS =====
 function renderFilters() {
-  // Region
   const regionDiv = document.getElementById('regionFilters');
   regionDiv.innerHTML = '';
   [{key:'all',label:'全部'},{key:'us',label:'🇺🇸 美国'},{key:'cn',label:'🇨🇳 中国'},{key:'eu',label:'🇪🇺 欧洲'}].forEach(r => {
@@ -1014,7 +1437,6 @@ function renderFilters() {
     regionDiv.appendChild(btn);
   });
 
-  // Company
   const companyDiv = document.getElementById('companyFilters');
   companyDiv.innerHTML = '';
   const allCBtn = document.createElement('button');
@@ -1032,7 +1454,6 @@ function renderFilters() {
     companyDiv.appendChild(btn);
   });
 
-  // Source (open/closed)
   const sourceDiv = document.getElementById('sourceFilters');
   sourceDiv.innerHTML = '';
   [{key:'all',label:'全部'},{key:'open',label:'🔓 开源'},{key:'closed',label:'🔒 闭源'}].forEach(s => {
@@ -1043,7 +1464,6 @@ function renderFilters() {
     sourceDiv.appendChild(btn);
   });
 
-  // Modality
   const modDiv = document.getElementById('modalityFilters');
   modDiv.innerHTML = '';
   [{key:'all',label:'全部'},{key:'text',label:'📝 纯文本'},{key:'multimodal',label:'🎨 多模态'}].forEach(s => {
@@ -1056,7 +1476,6 @@ function renderFilters() {
 }
 
 function updateFilters() {
-  // Re-highlight buttons
   document.querySelectorAll('#regionFilters .filter-btn').forEach(b => {
     const key = b.textContent.includes('全部') ? 'all' : b.textContent.includes('美') ? 'us' : b.textContent.includes('中') ? 'cn' : 'eu';
     b.classList.toggle('active', key === activeRegion);
@@ -1091,6 +1510,22 @@ function updateSearchCount() {
   countEl.textContent = `${matchCount} / ${MODELS.length}`;
 }
 
+// ===== COMPANY COLOR HELPERS =====
+function companyBg(color, alpha) {
+  // Convert hex to rgba
+  const r = parseInt(color.slice(1,3), 16);
+  const g = parseInt(color.slice(3,5), 16);
+  const b = parseInt(color.slice(5,7), 16);
+  const isDark = document.documentElement.dataset.theme === 'dark';
+  const a = isDark ? alpha : alpha * 0.6;
+  return `rgba(${r},${g},${b},${a})`;
+}
+
+function companyBorder(color) {
+  const isDark = document.documentElement.dataset.theme === 'dark';
+  return isDark ? color + '44' : color + '30';
+}
+
 // ===== TIMELINE RENDER =====
 function renderTimeline() {
   const yearAxis = document.getElementById('yearAxis');
@@ -1100,9 +1535,8 @@ function renderTimeline() {
   body.innerHTML = '';
   bandsDiv.innerHTML = '';
 
-  const scrollWidth = Math.max(TOTAL_MONTHS / 12 * 120, 800);
+  const scrollWidth = TOTAL_MONTHS * currentPxPerMonth;
 
-  // Year axis + bands
   for (let y = YEAR_MIN; y <= YEAR_MAX; y++) {
     const label = document.createElement('div');
     label.className = 'year-label';
@@ -1116,7 +1550,6 @@ function renderTimeline() {
     label.style.minWidth = '80px';
     yearAxis.appendChild(label);
 
-    // Year band
     const band = document.createElement('div');
     band.className = 'year-band ' + (isDim ? 'dim' : 'bright');
     band.style.left = pct + '%';
@@ -1127,7 +1560,6 @@ function renderTimeline() {
   yearAxis.style.minWidth = scrollWidth + 'px';
   bandsDiv.style.minWidth = scrollWidth + 'px';
 
-  // Filter + group
   const filtered = getFilteredModels();
   const matchIds = getSearchMatchIds();
   const companyOrder = Object.keys(COMPANIES);
@@ -1150,7 +1582,7 @@ function renderTimeline() {
     const label = document.createElement('div');
     label.className = 'company-label';
     label.innerHTML = `
-      <div class="company-logo" style="background:${cfg.color}22;color:${cfg.color};border:1px solid ${cfg.color}44;">${cfg.logo}</div>
+      <div class="company-logo" style="background:${companyBg(cfg.color, 0.12)};color:${cfg.color};border:1px solid ${companyBorder(cfg.color)};">${cfg.logo}</div>
       <div class="company-info">
         <div class="company-name">${ORIGIN_FLAGS[cfg.origin]} ${company}</div>
         <div class="company-origin">${ORIGIN_LABELS[cfg.origin]}</div>
@@ -1169,12 +1601,11 @@ function renderTimeline() {
       track.appendChild(line);
     }
 
-    // Compute overlap offsets: group by same month
+    // Overlap offsets
     const monthGroups = {};
     models.forEach(m => {
-      const key = m.date;
-      if (!monthGroups[key]) monthGroups[key] = [];
-      monthGroups[key].push(m);
+      if (!monthGroups[m.date]) monthGroups[m.date] = [];
+      monthGroups[m.date].push(m);
     });
 
     const offsetMap = {};
@@ -1193,13 +1624,11 @@ function renderTimeline() {
       node.style.animationDelay = (delay * 0.03 + i * 0.05) + 's';
       node.dataset.id = m.id;
 
-      // Vertical offset for overlap
       const vOff = offsetMap[m.id] || 0;
       if (vOff !== 0) node.style.top = `calc(50% + ${vOff}px)`;
       else node.style.top = '50%';
       node.style.transform = 'translate(-50%, -50%)';
 
-      // Search highlight
       if (searchQuery && matchIds) {
         if (matchIds.has(m.id)) node.classList.add('search-match');
         else node.classList.add('search-dim');
@@ -1208,7 +1637,7 @@ function renderTimeline() {
       const dot = document.createElement('div');
       dot.className = 'model-dot' + (m.flagship ? ' flagship' : '');
       dot.style.borderColor = m.flagship ? '#f472b6' : cfg.color;
-      dot.style.background = m.flagship ? 'rgba(244,114,182,0.2)' : cfg.color + '22';
+      dot.style.background = m.flagship ? 'rgba(244,114,182,0.15)' : companyBg(cfg.color, 0.1);
 
       const nameLabel = document.createElement('div');
       nameLabel.className = 'model-name';
@@ -1219,7 +1648,6 @@ function renderTimeline() {
       const [y, mo] = m.date.split('-');
       yearTag.textContent = y + '.' + mo;
 
-      // Compare checkbox
       const check = document.createElement('div');
       check.className = 'compare-check' + (compareIds.includes(m.id) ? ' checked' : '');
       check.onclick = (e) => { e.stopPropagation(); toggleCompare(m.id); };
@@ -1238,7 +1666,6 @@ function renderTimeline() {
 
     row.appendChild(track);
 
-    // Hover to reveal evolution lines for this company
     row.addEventListener('mouseenter', () => {
       document.querySelectorAll(`.evo-line[data-company="${company}"]`).forEach(p => {
         p.style.opacity = '0.35';
@@ -1257,8 +1684,8 @@ function renderTimeline() {
 
   document.getElementById('timelineScroll').style.minWidth = scrollWidth + 'px';
 
-  drawEvolutionLines();
-  drawSparkline();
+  // Redraw overlays after DOM is ready
+  requestAnimationFrame(() => { drawEvolutionLines(); drawSparkline(); });
 }
 
 // ===== EVOLUTION LINES =====
@@ -1283,7 +1710,6 @@ function drawEvolutionLines() {
 
     const track = document.querySelector(`.model-track[data-company="${company}"]`);
     if (!track) return;
-    const trackRect = track.getBoundingClientRect();
 
     for (let i = 0; i < models.length - 1; i++) {
       const nodeA = track.querySelector(`.model-node[data-id="${models[i].id}"]`);
@@ -1321,7 +1747,6 @@ function drawSparkline() {
   const ctx = canvas.getContext('2d');
 
   const filtered = getFilteredModels();
-  // Cumulative count by month
   const monthCounts = {};
   filtered.forEach(m => {
     const [y, mo] = m.date.split('-').map(Number);
@@ -1347,7 +1772,9 @@ function drawSparkline() {
 
   ctx.clearRect(0, 0, w, h);
 
-  // Draw filled area
+  const isDark = document.documentElement.dataset.theme === 'dark';
+  const accentColor = isDark ? '129,140,248' : '99,102,241';
+
   ctx.beginPath();
   ctx.moveTo(pad, h - pad);
   points.forEach((p, i) => {
@@ -1357,22 +1784,20 @@ function drawSparkline() {
   });
   ctx.lineTo(w - pad, h - pad);
   ctx.closePath();
-  ctx.fillStyle = 'rgba(59,130,246,0.08)';
+  ctx.fillStyle = `rgba(${accentColor},0.08)`;
   ctx.fill();
 
-  // Draw line
   ctx.beginPath();
   points.forEach((p, i) => {
     const x = pad + (i / (points.length - 1)) * (w - pad * 2);
     const y = h - pad - (p.count / maxCount) * (h - pad * 2);
     if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
   });
-  ctx.strokeStyle = 'rgba(59,130,246,0.35)';
+  ctx.strokeStyle = `rgba(${accentColor},0.35)`;
   ctx.lineWidth = 1.5;
   ctx.stroke();
 
-  // Label
-  ctx.fillStyle = 'rgba(59,130,246,0.5)';
+  ctx.fillStyle = `rgba(${accentColor},0.5)`;
   ctx.font = '9px Inter, sans-serif';
   ctx.textAlign = 'left';
   ctx.fillText(maxCount + '', pad + 2, pad + 10);
@@ -1434,48 +1859,39 @@ function renderTable() {
     const cfg = COMPANIES[m.company] || { color: '#64748b' };
     const tr = document.createElement('tr');
 
-    // Dim old era
     const [yr] = m.date.split('-').map(Number);
     if (yr < 2023) tr.classList.add('table-row-dim');
 
-    // Search dim
     if (searchQuery && matchIds && !matchIds.has(m.id)) tr.style.opacity = '0.25';
 
-    // Flagship
     const tdFlag = document.createElement('td');
     if (m.flagship) tdFlag.innerHTML = '<span class="table-flagship-dot"></span>';
     tr.appendChild(tdFlag);
 
-    // Name
     const tdName = document.createElement('td');
     tdName.textContent = m.name;
     tdName.style.fontWeight = m.flagship ? '700' : '400';
     tr.appendChild(tdName);
 
-    // Company
     const tdCompany = document.createElement('td');
     tdCompany.innerHTML = `<span class="table-company-badge"><span class="table-company-dot" style="background:${cfg.color}"></span>${m.company}</span>`;
     tr.appendChild(tdCompany);
 
-    // Date
     const tdDate = document.createElement('td');
     tdDate.textContent = m.date;
     tdDate.style.fontVariantNumeric = 'tabular-nums';
     tr.appendChild(tdDate);
 
-    // Params
     const tdParams = document.createElement('td');
     tdParams.textContent = m.params || '—';
     tr.appendChild(tdParams);
 
-    // Source
     const tdSource = document.createElement('td');
     if (m.open_source === true) tdSource.innerHTML = '<span class="table-source-badge open">开源</span>';
     else if (m.open_source === false) tdSource.innerHTML = '<span class="table-source-badge closed">闭源</span>';
     else tdSource.innerHTML = '<span class="table-source-badge unknown">未知</span>';
     tr.appendChild(tdSource);
 
-    // Modalities
     const tdMod = document.createElement('td');
     tdMod.innerHTML = (m.modalities || ['text']).map(mod => {
       const labels = { text: '文本', image: '图像', audio: '音频' };
@@ -1483,7 +1899,6 @@ function renderTable() {
     }).join('');
     tr.appendChild(tdMod);
 
-    // Tags
     const tdTags = document.createElement('td');
     tdTags.innerHTML = (m.tags || []).map(t => `<span class="table-tag">${t}</span>`).join('');
     tr.appendChild(tdTags);
@@ -1498,18 +1913,13 @@ function toggleCompare(id) {
   if (idx >= 0) {
     compareIds.splice(idx, 1);
   } else {
-    if (compareIds.length >= 3) {
-      compareIds.shift(); // remove oldest
-    }
+    if (compareIds.length >= 3) compareIds.shift();
     compareIds.push(id);
   }
   updateComparePanel();
-  // Update checkboxes in timeline
   document.querySelectorAll('.compare-check').forEach(el => {
     const node = el.closest('.model-node');
-    if (node) {
-      el.classList.toggle('checked', compareIds.includes(node.dataset.id));
-    }
+    if (node) el.classList.toggle('checked', compareIds.includes(node.dataset.id));
   });
 }
 
@@ -1561,7 +1971,7 @@ const tooltip = document.getElementById('tooltip');
 
 function showTooltip(e, model, cfg) {
   document.getElementById('tooltipBadge').textContent = model.origin === 'cn' ? '🇨🇳' : model.origin === 'eu' ? '🇪🇺' : '🇺🇸';
-  document.getElementById('tooltipBadge').style.background = cfg.color + '33';
+  document.getElementById('tooltipBadge').style.background = companyBg(cfg.color, 0.2);
   document.getElementById('tooltipBadge').style.color = cfg.color;
   document.getElementById('tooltipTitle').textContent = model.name;
 
@@ -1569,14 +1979,13 @@ function showTooltip(e, model, cfg) {
   const monthNames = ['','一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
   document.getElementById('tooltipDate').textContent = `${y}年${monthNames[parseInt(m)]} · ${model.company}${model.params ? ' · ' + model.params : ''}`;
 
-  // Meta badges (open_source + modalities)
   const metaDiv = document.getElementById('tooltipMeta');
   let metaHtml = '';
-  if (model.open_source === true) metaHtml += '<span class="tooltip-meta-badge" style="border-color:#34d399;color:#34d399;background:rgba(52,211,153,0.1);">🔓 开源</span>';
-  else if (model.open_source === false) metaHtml += '<span class="tooltip-meta-badge" style="border-color:#f87171;color:#f87171;background:rgba(248,113,113,0.1);">🔒 闭源</span>';
+  if (model.open_source === true) metaHtml += '<span class="tooltip-meta-badge" style="border-color:#10b981;color:#10b981;background:rgba(16,185,129,0.08);">🔓 开源</span>';
+  else if (model.open_source === false) metaHtml += '<span class="tooltip-meta-badge" style="border-color:#ef4444;color:#ef4444;background:rgba(239,68,68,0.08);">🔒 闭源</span>';
   (model.modalities || ['text']).forEach(mod => {
     const labels = {text:'📝 文本',image:'🖼️ 图像',audio:'🎵 音频'};
-    metaHtml += `<span class="tooltip-meta-badge" style="border-color:#a78bfa;color:#c4b5fd;background:rgba(167,139,250,0.1);">${labels[mod]||mod}</span>`;
+    metaHtml += `<span class="tooltip-meta-badge" style="border-color:var(--border);color:var(--text-secondary);background:var(--bg-tertiary);">${labels[mod]||mod}</span>`;
   });
   metaDiv.innerHTML = metaHtml;
 
@@ -1608,6 +2017,7 @@ function setView(mode) {
   if (mode === 'table') { tableView.classList.add('visible'); tableView.style.display = ''; }
   else { tableView.classList.remove('visible'); tableView.style.display = 'none'; }
   document.getElementById('legend').style.display = mode === 'timeline' ? '' : 'none';
+  document.querySelector('.zoom-bar').style.display = mode === 'timeline' ? '' : 'none';
 }
 
 // ===== HASH =====
@@ -1641,14 +2051,20 @@ function updateFooter() {
 
 // ===== EVENTS =====
 function bindEvents() {
-  // Search
   const searchInput = document.getElementById('searchInput');
+  const timelineView = document.getElementById('timelineView');
+
+  // Theme toggle
+  document.getElementById('themeToggle').onclick = toggleTheme;
+
+  // Search
   searchInput.addEventListener('input', () => {
     searchQuery = searchInput.value.trim();
     renderStats();
     renderTimeline();
     renderTable();
     updateSearchCount();
+    requestAnimationFrame(() => { drawEvolutionLines(); drawSparkline(); });
   });
 
   // View toggle
@@ -1663,16 +2079,71 @@ function bindEvents() {
     document.querySelectorAll('.compare-check.checked').forEach(el => el.classList.remove('checked'));
   };
 
+  // Zoom slider
+  const zoomSlider = document.getElementById('zoomSlider');
+  zoomSlider.addEventListener('input', () => {
+    const oldPx = currentPxPerMonth;
+    zoomNorm = parseFloat(zoomSlider.value);
+    const centerClientX = timelineView.getBoundingClientRect().left + timelineView.clientWidth / 2;
+    applyZoomWithFocus(oldPx, centerClientX);
+  });
+
+  // Zoom buttons
+  document.getElementById('zoomIn').onclick = () => {
+    const oldPx = currentPxPerMonth;
+    zoomNorm = Math.min(1, zoomNorm + 0.08);
+    const centerClientX = timelineView.getBoundingClientRect().left + timelineView.clientWidth / 2;
+    applyZoomWithFocus(oldPx, centerClientX);
+  };
+  document.getElementById('zoomOut').onclick = () => {
+    const oldPx = currentPxPerMonth;
+    zoomNorm = Math.max(0, zoomNorm - 0.08);
+    const centerClientX = timelineView.getBoundingClientRect().left + timelineView.clientWidth / 2;
+    applyZoomWithFocus(oldPx, centerClientX);
+  };
+
+  // Mouse wheel zoom
+  timelineView.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const oldPx = currentPxPerMonth;
+    const delta = -e.deltaY * 0.0015;
+    zoomNorm = Math.max(0, Math.min(1, zoomNorm + delta));
+    applyZoomWithFocus(oldPx, e.clientX);
+  }, { passive: false });
+
+  // Click-drag pan
+  timelineView.addEventListener('mousedown', (e) => {
+    if (e.target.closest('.model-node, .compare-check, button, input')) return;
+    if (e.button !== 0) return;
+    isPanning = true;
+    panStartX = e.clientX;
+    panStartScrollLeft = timelineView.scrollLeft;
+    timelineView.classList.add('panning');
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (!isPanning) return;
+    const dx = e.clientX - panStartX;
+    timelineView.scrollLeft = panStartScrollLeft - dx;
+    updateZoomLabel();
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (isPanning) {
+      isPanning = false;
+      timelineView.classList.remove('panning');
+    }
+  });
+
   // Keyboard shortcuts
   document.addEventListener('keydown', (e) => {
-    // / focuses search
     if (e.key === '/' && document.activeElement !== searchInput) {
       e.preventDefault();
       searchInput.focus();
       return;
     }
 
-    // Esc clears search or closes compare
     if (e.key === 'Escape') {
       if (compareIds.length > 0) {
         compareIds = [];
@@ -1686,26 +2157,37 @@ function bindEvents() {
         renderTimeline();
         renderTable();
         updateSearchCount();
+        requestAnimationFrame(() => { drawEvolutionLines(); drawSparkline(); });
       }
       return;
     }
 
-    // Arrow keys scroll timeline
     if (document.activeElement === searchInput) return;
-    const container = document.getElementById('timelineView');
-    if (e.key === 'ArrowLeft') { container.scrollBy({ left: -200, behavior: 'smooth' }); e.preventDefault(); }
-    if (e.key === 'ArrowRight') { container.scrollBy({ left: 200, behavior: 'smooth' }); e.preventDefault(); }
+    if (e.key === 'ArrowLeft') { timelineView.scrollBy({ left: -200, behavior: 'smooth' }); e.preventDefault(); }
+    if (e.key === 'ArrowRight') { timelineView.scrollBy({ left: 200, behavior: 'smooth' }); e.preventDefault(); }
   });
 
-  // Redraw evolution lines on scroll/resize
-  const timelineView = document.getElementById('timelineView');
+  // Redraw on scroll/resize
   let evoTimeout;
   const redrawEvo = () => {
     clearTimeout(evoTimeout);
-    evoTimeout = setTimeout(() => { drawEvolutionLines(); drawSparkline(); }, 100);
+    evoTimeout = setTimeout(() => {
+      drawEvolutionLines();
+      drawSparkline();
+      updateZoomLabel();
+    }, 80);
   };
   timelineView.addEventListener('scroll', redrawEvo);
-  window.addEventListener('resize', redrawEvo);
+  window.addEventListener('resize', () => {
+    // Recalculate zoom on resize
+    currentPxPerMonth = zoomNormToPx(zoomNorm);
+    const scrollWidth = TOTAL_MONTHS * currentPxPerMonth;
+    document.getElementById('timelineScroll').style.minWidth = scrollWidth + 'px';
+    document.querySelectorAll('.model-track').forEach(t => t.style.minWidth = scrollWidth + 'px');
+    document.getElementById('yearAxis').style.minWidth = scrollWidth + 'px';
+    document.getElementById('yearBands').style.minWidth = scrollWidth + 'px';
+    redrawEvo();
+  });
 
   // Hash change
   window.addEventListener('hashchange', () => {
