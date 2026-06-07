@@ -93,5 +93,10 @@
     "color": "#10b981",
     "logo": "面",
     "origin": "cn"
+  },
+  "MiniMax": {
+    "color": "#FF6B35",
+    "logo": "M",
+    "origin": "cn"
   }
 }

@@ -755,6 +755,25 @@
     ]
   },
   {
+    "id": "abab65",
+    "name": "ABAB 6.5",
+    "company": "MiniMax",
+    "origin": "cn",
+    "date": "2024-04",
+    "params": "未公开",
+    "flagship": false,
+    "desc": "MiniMax MoE大语言模型系列。",
+    "tags": [
+      "MoE",
+      "对话",
+      "角色扮演"
+    ],
+    "open_source": false,
+    "modalities": [
+      "text"
+    ]
+  },
+  {
     "id": "gpt4o",
     "name": "GPT-4o",
     "company": "OpenAI",
@@ -1559,6 +1578,45 @@
     ]
   },
   {
+    "id": "minimax-text-01",
+    "name": "MiniMax-Text-01",
+    "company": "MiniMax",
+    "origin": "cn",
+    "date": "2025-01",
+    "params": "456B",
+    "flagship": true,
+    "desc": "基于Lightning Attention的超长上下文模型，456B参数。",
+    "tags": [
+      "Lightning Attention",
+      "长上下文",
+      "456B"
+    ],
+    "open_source": true,
+    "modalities": [
+      "text"
+    ]
+  },
+  {
+    "id": "minimax-vl-01",
+    "name": "MiniMax-VL-01",
+    "company": "MiniMax",
+    "origin": "cn",
+    "date": "2025-01",
+    "params": "未公开",
+    "flagship": false,
+    "desc": "MiniMax视觉语言模型，与Text-01同期发布。",
+    "tags": [
+      "多模态",
+      "视觉",
+      "开源"
+    ],
+    "open_source": true,
+    "modalities": [
+      "text",
+      "image"
+    ]
+  },
+  {
     "id": "grok3",
     "name": "Grok-3",
     "company": "xAI",
@@ -1970,6 +2028,25 @@
       "万亿参数"
     ],
     "open_source": true,
+    "modalities": [
+      "text"
+    ]
+  },
+  {
+    "id": "minimax-m1",
+    "name": "MiniMax-M1",
+    "company": "MiniMax",
+    "origin": "cn",
+    "date": "2025-06",
+    "params": "未公开",
+    "flagship": true,
+    "desc": "MiniMax M系列首款模型。",
+    "tags": [
+      "旗舰",
+      "推理",
+      "M系列"
+    ],
+    "open_source": false,
     "modalities": [
       "text"
     ]
@@ -2390,6 +2467,25 @@
     ]
   },
   {
+    "id": "minimax-m25",
+    "name": "MiniMax-M2.5",
+    "company": "MiniMax",
+    "origin": "cn",
+    "date": "2026-02",
+    "params": "未公开",
+    "flagship": true,
+    "desc": "M系列升级版，含Lightning变体。",
+    "tags": [
+      "旗舰",
+      "Lightning",
+      "升级"
+    ],
+    "open_source": false,
+    "modalities": [
+      "text"
+    ]
+  },
+  {
     "id": "mimo_v2_pro",
     "name": "MiMo-V2-Pro",
     "company": "小米",
@@ -2442,6 +2538,25 @@
       "开源"
     ],
     "open_source": true,
+    "modalities": [
+      "text"
+    ]
+  },
+  {
+    "id": "minimax-m27",
+    "name": "MiniMax-M2.7",
+    "company": "MiniMax",
+    "origin": "cn",
+    "date": "2026-03",
+    "params": "未公开",
+    "flagship": true,
+    "desc": "M2系列持续迭代。",
+    "tags": [
+      "旗舰",
+      "迭代",
+      "推理"
+    ],
+    "open_source": false,
     "modalities": [
       "text"
     ]
@@ -2682,6 +2797,28 @@
       "Agent"
     ],
     "open_source": false,
+    "modalities": [
+      "text",
+      "image"
+    ]
+  },
+  {
+    "id": "minimax-m3",
+    "name": "MiniMax-M3",
+    "company": "MiniMax",
+    "origin": "cn",
+    "date": "2026-05",
+    "params": "未公开",
+    "flagship": true,
+    "desc": "MSA架构，1M上下文，原生多模态，编码与Agent能力前沿。开源。",
+    "tags": [
+      "MSA",
+      "1M上下文",
+      "多模态",
+      "开源",
+      "Agent"
+    ],
+    "open_source": true,
     "modalities": [
       "text",
       "image"
