@@ -1,0 +1,15 @@
+{
+  "OpenAI":     { "color": "#10b981", "logo": "O",  "origin": "us" },
+  "Google":     { "color": "#4285f4", "logo": "G",  "origin": "us" },
+  "Anthropic":  { "color": "#d97706", "logo": "A",  "origin": "us" },
+  "Meta":       { "color": "#3b82f6", "logo": "M",  "origin": "us" },
+  "Mistral AI": { "color": "#8b5cf6", "logo": "Mi", "origin": "eu" },
+  "DeepSeek":   { "color": "#06b6d4", "logo": "DS", "origin": "cn" },
+  "阿里巴巴":   { "color": "#f97316", "logo": "阿", "origin": "cn" },
+  "百度":       { "color": "#3b82f6", "logo": "百", "origin": "cn" },
+  "字节跳动":   { "color": "#14b8a6", "logo": "字", "origin": "cn" },
+  "智谱AI":     { "color": "#ec4899", "logo": "智", "origin": "cn" },
+  "零一万物":   { "color": "#a855f7", "logo": "零", "origin": "cn" },
+  "小米":       { "color": "#f43f5e", "logo": "米", "origin": "cn" },
+  "月之暗面":   { "color": "#6366f1", "logo": "月", "origin": "cn" }
+}

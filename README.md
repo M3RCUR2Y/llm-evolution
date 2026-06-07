@@ -61,16 +61,35 @@ start index.html       # Windows
 
 - **HTML5** + **CSS3** + **Vanilla JavaScript**
 - 暗色主题，CSS Grid/Flexbox 布局
+- **数据层分离**：模型数据存放在 `data/models.json`，便于社区贡献
 - 无任何外部依赖（Google Fonts 为可选增强）
 
 ## 📁 项目结构
 
 ```
 llm-evolution/
-├── index.html      # 主页面（包含所有代码）
-├── README.md       # 项目说明
-└── LICENSE         # MIT License
+├── index.html                    # 主页面（渲染引擎）
+├── data/
+│   ├── models.json               # 模型数据（唯一数据源）
+│   └── companies.json            # 公司配置
+├── .github/
+│   ├── workflows/
+│   │   └── validate-data.yml     # CI：PR 时自动校验数据完整性
+│   ├── ISSUE_TEMPLATE/
+│   │   └── add-model.yml         # 添加模型的标准模板
+│   └── scripts/
+│       └── validate-data.js      # 数据校验脚本
+├── ROADMAP.md                    # 改进计划
+├── README.md
+└── LICENSE
 ```
+
+### 如何添加新模型
+
+1. 编辑 `data/models.json`，按格式添加新模型条目
+2. 如需添加新公司，同步编辑 `data/companies.json`
+3. 提交 PR → CI 自动校验 → Review → Merge
+4. GitHub Pages 自动部署 🚀
 
 ## 🤝 贡献
 

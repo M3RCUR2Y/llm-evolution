@@ -1,0 +1,25 @@
+name: Validate Data
+
+on:
+  pull_request:
+    paths:
+      - 'data/models.json'
+      - 'data/companies.json'
+  push:
+    paths:
+      - 'data/models.json'
+      - 'data/companies.json'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate data files
+        run: node .github/scripts/validate-data.js
