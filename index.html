@@ -6,6 +6,7 @@
 <title>大模型进化史 — LLM Evolution Timeline</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+  /* Fallback: if Google Fonts blocked (e.g. in China), use system fonts — no FOUT hang */
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -446,6 +447,30 @@
     animation: fadeIn 0.4s ease-out both;
   }
 
+  /* ===== Footer ===== */
+  .footer {
+    padding: 20px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .footer a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer a:hover {
+    color: #93c5fd;
+    text-decoration: underline;
+  }
+
   /* ===== Responsive ===== */
   @media (max-width: 768px) {
     .header, .stats-bar, .filters, .timeline-container {
@@ -515,6 +540,11 @@
   <div class="tooltip-tags" id="tooltipTags"></div>
 </div>
 
+<div class="footer" id="footer">
+  <span id="footerUpdated">最后更新：加载中…</span>
+  <a href="https://github.com/LLing486/llm-evolution" target="_blank" rel="noopener">📦 GitHub 仓库</a>
+</div>
+
 <div class="legend">
   <div class="legend-item">
     <div class="legend-dot flagship" style="border-color: #f472b6; background: rgba(244,114,182,0.2);"></div>
@@ -539,102 +569,11 @@
 </div>
 
 <script>
-// ===== DATA =====
-const MODELS = [
-  // === OpenAI ===
-  { id: 'gpt1', name: 'GPT-1', company: 'OpenAI', origin: 'us', date: '2018-06', params: '117M', flagship: false, desc: '首个基于 Transformer decoder 的生成式预训练模型，开创了 "预训练+微调" 范式。', tags: ['NLP', '预训练', '开创性'] },
-  { id: 'gpt2', name: 'GPT-2', company: 'OpenAI', origin: 'us', date: '2019-02', params: '1.5B', flagship: false, desc: '因能力过强曾拒绝公开发布，展示了大规模语言模型的文本生成能力。', tags: ['文本生成', '安全争议'] },
-  { id: 'gpt3', name: 'GPT-3', company: 'OpenAI', origin: 'us', date: '2020-06', params: '175B', flagship: true, desc: '1750亿参数，首次展示 Few-shot 和 In-context Learning，开启大模型时代。', tags: ['Few-shot', 'In-context Learning', '里程碑'] },
-  { id: 'gpt35', name: 'GPT-3.5', company: 'OpenAI', origin: 'us', date: '2022-11', params: '~175B', flagship: false, desc: 'ChatGPT 背后的模型，基于 RLHF 对齐，引爆全球 AI 热潮。', tags: ['ChatGPT', 'RLHF', '对话'] },
-  { id: 'gpt4', name: 'GPT-4', company: 'OpenAI', origin: 'us', date: '2023-03', params: '未公开', flagship: true, desc: '多模态大模型，支持图像输入。在多项考试中达到人类顶尖水平。', tags: ['多模态', '推理', '标杆'] },
-  { id: 'gpt4o', name: 'GPT-4o', company: 'OpenAI', origin: 'us', date: '2024-05', params: '未公开', flagship: false, desc: '原生多模态，文本/音频/图像统一模型，响应速度大幅提升。', tags: ['原生多模态', '语音', '速度'] },
-  { id: 'o1', name: 'o1', company: 'OpenAI', origin: 'us', date: '2024-09', params: '未公开', flagship: true, desc: '推理模型，通过 Chain-of-Thought 推理在数学和编程竞赛中表现突出。', tags: ['推理', 'CoT', '数学'] },
-  { id: 'o3', name: 'o3', company: 'OpenAI', origin: 'us', date: '2025-01', params: '未公开', flagship: true, desc: '下一代推理模型，在 ARC-AGI 基准上取得突破性成绩。', tags: ['推理', 'AGI', '突破'] },
-  { id: 'gpt41', name: 'GPT-4.1', company: 'OpenAI', origin: 'us', date: '2025-04', params: '未公开', flagship: false, desc: '编程能力大幅提升，支持 100万 token 上下文窗口。', tags: ['编程', '长上下文', '1M'] },
-
-  // === Google ===
-  { id: 'bert', name: 'BERT', company: 'Google', origin: 'us', date: '2018-10', params: '340M', flagship: true, desc: '双向编码器，刷新 11 项 NLP 基准。开创了 Encoder 架构的预训练范式。', tags: ['双向', 'Encoder', 'NLP基准'] },
-  { id: 't5', name: 'T5', company: 'Google', origin: 'us', date: '2019-10', params: '11B', flagship: false, desc: 'Text-to-Text 统一框架，将所有 NLP 任务统一为文本生成问题。', tags: ['Text-to-Text', '统一框架'] },
-  { id: 'lamda', name: 'LaMDA', company: 'Google', origin: 'us', date: '2021-05', params: '137B', flagship: false, desc: '对话专用模型，曾因工程师声称其具有 "感知能力" 引发争议。', tags: ['对话', '争议'] },
-  { id: 'palm', name: 'PaLM', company: 'Google', origin: 'us', date: '2022-04', params: '540B', flagship: true, desc: '5400亿参数，Pathways 系统训练，展示了强大的推理和代码能力。', tags: ['Pathways', '推理', '540B'] },
-  { id: 'palm2', name: 'PaLM 2', company: 'Google', origin: 'us', date: '2023-05', params: '未公开', flagship: false, desc: 'Gemini 前身，在多语言和数学推理上显著进步。', tags: ['多语言', '数学'] },
-  { id: 'gemini1', name: 'Gemini 1.0', company: 'Google', origin: 'us', date: '2023-12', params: '未公开', flagship: true, desc: 'Google 最强多模态模型，Ultra 版本在多项基准超越 GPT-4。', tags: ['多模态', '原生', 'Ultra'] },
-  { id: 'gemini15', name: 'Gemini 1.5', company: 'Google', origin: 'us', date: '2024-02', params: '未公开', flagship: false, desc: '支持最高 200万 token 上下文窗口，长上下文能力业界领先。', tags: ['2M上下文', '长文本', 'MoE'] },
-  { id: 'gemini2', name: 'Gemini 2.0', company: 'Google', origin: 'us', date: '2024-12', params: '未公开', flagship: false, desc: '支持原生工具调用和多模态输出，Agent 能力大幅提升。', tags: ['Agent', '工具调用', '多模态输出'] },
-  { id: 'gemini25', name: 'Gemini 2.5', company: 'Google', origin: 'us', date: '2025-03', params: '未公开', flagship: true, desc: 'Pro 版本在编程和推理基准上登顶，原生思考能力。', tags: ['思考模型', '编程', '登顶'] },
-
-  // === Anthropic ===
-  { id: 'claude1', name: 'Claude 1', company: 'Anthropic', origin: 'us', date: '2023-03', params: '未公开', flagship: false, desc: 'Anthropic 首个商用模型，强调安全性和有帮助性。', tags: ['Constitutional AI', '安全'] },
-  { id: 'claude2', name: 'Claude 2', company: 'Anthropic', origin: 'us', date: '2023-07', params: '未公开', flagship: false, desc: '支持 100K 上下文窗口，长文档处理能力领先。', tags: ['100K上下文', '长文档'] },
-  { id: 'claude3', name: 'Claude 3', company: 'Anthropic', origin: 'us', date: '2024-03', params: '未公开', flagship: true, desc: '三档模型（Haiku/Sonnet/Opus），Opus 版本在多数基准追平 GPT-4。', tags: ['三档', 'Opus', 'Sonnet', 'Haiku'] },
-  { id: 'claude35', name: 'Claude 3.5 Sonnet', company: 'Anthropic', origin: 'us', date: '2024-06', params: '未公开', flagship: false, desc: '性价比标杆，编程能力出众，Artifacts 功能广受好评。', tags: ['编程', 'Artifacts', '性价比'] },
-  { id: 'claude4', name: 'Claude 4', company: 'Anthropic', origin: 'us', date: '2025-05', params: '未公开', flagship: true, desc: 'Opus 4 和 Sonnet 4，长时间 Agent 任务和编程推理能力大幅提升。', tags: ['Agent', '编程', 'Opus 4'] },
-
-  // === Meta ===
-  { id: 'llama1', name: 'LLaMA', company: 'Meta', origin: 'us', date: '2023-02', params: '65B', flagship: true, desc: '开源大模型的开端，小模型高质量，引爆开源社区。', tags: ['开源', '里程碑', '65B'] },
-  { id: 'llama2', name: 'LLaMA 2', company: 'Meta', origin: 'us', date: '2023-07', params: '70B', flagship: false, desc: '开放商用，70B 版本性能接近 GPT-3.5，奠定开源生态基础。', tags: ['开源商用', '70B', 'RLHF'] },
-  { id: 'llama3', name: 'LLaMA 3', company: 'Meta', origin: 'us', date: '2024-04', params: '405B', flagship: true, desc: '405B 最大开源模型，支持 128K 上下文，多语言能力提升。', tags: ['开源', '405B', '128K'] },
-  { id: 'llama4', name: 'LLaMA 4', company: 'Meta', origin: 'us', date: '2025-04', params: '未公开', flagship: true, desc: 'Scout（16专家MoE，10M上下文）和 Maverick，转向多模态和MoE架构。', tags: ['MoE', '多模态', '10M上下文'] },
-
-  // === Mistral ===
-  { id: 'mistral7b', name: 'Mistral 7B', company: 'Mistral AI', origin: 'eu', date: '2023-09', params: '7B', flagship: true, desc: '欧洲之光，7B 参数超越 LLaMA 2 13B，Sliding Window Attention。', tags: ['小模型', 'Sliding Window', '欧洲'] },
-  { id: 'mixtral', name: 'Mixtral 8x7B', company: 'Mistral AI', origin: 'eu', date: '2023-12', params: '46.7B', flagship: false, desc: '开源 MoE 架构，8 个专家激活 2 个，效率与性能兼得。', tags: ['MoE', '开源', '高效'] },
-  { id: 'mistral_large', name: 'Mistral Large', company: 'Mistral AI', origin: 'eu', date: '2024-02', params: '未公开', flagship: false, desc: '闭源旗舰，多语言支持，对标 GPT-4 级别。', tags: ['闭源', '多语言'] },
-  { id: 'codestral', name: 'Codestral', company: 'Mistral AI', origin: 'eu', date: '2024-05', params: '未公开', flagship: false, desc: '代码专用模型，支持 80+ 编程语言。', tags: ['代码', '80+语言'] },
-
-  // === DeepSeek ===
-  { id: 'deepseek1', name: 'DeepSeek-V1', company: 'DeepSeek', origin: 'cn', date: '2024-01', params: '67B', flagship: false, desc: '深度求索首个开源大模型，代码和数学能力突出。', tags: ['开源', '代码', '数学'] },
-  { id: 'deepseek2', name: 'DeepSeek-V2', company: 'DeepSeek', origin: 'cn', date: '2024-05', params: '236B (21B激活)', flagship: true, desc: 'MLA 注意力机制 + DeepSeekMoE，推理成本降低 93%。', tags: ['MLA', 'MoE', '低成本'] },
-  { id: 'deepseek3', name: 'DeepSeek-V3', company: 'DeepSeek', origin: 'cn', date: '2024-12', params: '671B (37B激活)', flagship: true, desc: '训练成本仅 557 万美元，性能媲美 GPT-4o，震惊全球。', tags: ['低成本', '媲美GPT-4', 'MoE'] },
-  { id: 'deepseekr1', name: 'DeepSeek-R1', company: 'DeepSeek', origin: 'cn', date: '2025-01', params: '671B', flagship: true, desc: '开源推理模型，纯 RL 训练出 CoT 推理能力，性能对标 o1。', tags: ['推理', 'RL', '开源', '对标o1'] },
-
-  // === Alibaba / Qwen ===
-  { id: 'qwen1', name: '通义千问 Qwen', company: '阿里巴巴', origin: 'cn', date: '2023-08', params: '72B', flagship: true, desc: '阿里首个开源大模型系列，覆盖 7B-72B，中英文能力均衡。', tags: ['开源', '中英双语'] },
-  { id: 'qwen15', name: 'Qwen 1.5', company: '阿里巴巴', origin: 'cn', date: '2024-02', params: '72B', flagship: false, desc: '改进版，支持更多语言和更长上下文。', tags: ['多语言', '长上下文'] },
-  { id: 'qwen2', name: 'Qwen 2', company: '阿里巴巴', origin: 'cn', date: '2024-06', params: '72B', flagship: false, desc: '性能全面对标 LLaMA 3，支持 128K 上下文。', tags: ['128K', '对标LLaMA 3'] },
-  { id: 'qwen25', name: 'Qwen 2.5', company: '阿里巴巴', origin: 'cn', date: '2024-09', params: '72B', flagship: true, desc: '全面升级，代码/数学/中文能力大幅提升，多模态版本齐发。', tags: ['代码', '数学', '多模态'] },
-  { id: 'qwen3', name: 'Qwen 3', company: '阿里巴巴', origin: 'cn', date: '2025-04', params: '235B (22B激活)', flagship: true, desc: '开源 MoE 旗舰，支持思考模式切换，200+ 国家语言。', tags: ['MoE', '思考模式', '200+语言'] },
-
-  // === Baidu / ERNIE ===
-  { id: 'ernie3', name: 'ERNIE 3.0', company: '百度', origin: 'cn', date: '2021-12', params: '260B', flagship: true, desc: '百度文心大模型，知识增强预训练，中文理解能力突出。', tags: ['知识增强', '中文'] },
-  { id: 'ernie35', name: '文心一言 ERNIE 3.5', company: '百度', origin: 'cn', date: '2023-03', params: '未公开', flagship: false, desc: '百度对标 ChatGPT 的产品，国内最早一批大模型对话产品。', tags: ['对话', '国内首发'] },
-  { id: 'ernie4', name: 'ERNIE 4.0', company: '百度', origin: 'cn', date: '2023-10', params: '未公开', flagship: true, desc: '百度最强基座模型，理解/生成/推理/记忆能力全面提升。', tags: ['全能', '提升'] },
-  { id: 'ernie45', name: 'ERNIE 4.5', company: '百度', origin: 'cn', date: '2025-03', params: '未公开', flagship: false, desc: 'MoE 架构，原生多模态，开源版本发布。', tags: ['MoE', '多模态', '开源'] },
-
-  // === ByteDance ===
-  { id: 'doubao', name: '豆包大模型', company: '字节跳动', origin: 'cn', date: '2024-05', params: '未公开', flagship: true, desc: '字节跳动旗下，主打低价格高性能，日均调用量破亿。', tags: ['低价', '高调用量', '火山引擎'] },
-  { id: 'doubao15', name: '豆包1.5', company: '字节跳动', origin: 'cn', date: '2025-01', params: '未公开', flagship: false, desc: '推理模型 Doubao-1.5-pro，思考能力大幅提升。', tags: ['推理', 'Pro'] },
-
-  // === 智谱 GLM ===
-  { id: 'chatglm', name: 'ChatGLM', company: '智谱AI', origin: 'cn', date: '2023-03', params: '6B', flagship: true, desc: '清华团队，首个开源中文对话模型，GLM 架构。', tags: ['开源', '中文', 'GLM架构'] },
-  { id: 'glm4', name: 'GLM-4', company: '智谱AI', origin: 'cn', date: '2024-01', params: '未公开', flagship: true, desc: '多模态版本齐全，对标 GPT-4 级别，支持工具调用。', tags: ['多模态', '工具调用'] },
-
-  // === 01.AI ===
-  { id: 'yi', name: 'Yi 系列', company: '零一万物', origin: 'cn', date: '2023-11', params: '34B', flagship: true, desc: '李开复创办，Yi-34B 发布即登顶开源排行榜。', tags: ['开源', '李开复', '登顶'] },
-
-  // === Xiaomi ===
-  { id: 'mimo', name: 'MiMo', company: '小米', origin: 'cn', date: '2025-05', params: '未公开', flagship: false, desc: '小米自研大模型，Mimo-v2.5 系列覆盖推理/对话/TTS，走性价比路线。', tags: ['小米', '性价比', 'TTS'] },
-
-  // === Moonshot ===
-  { id: 'kimi', name: 'Kimi', company: '月之暗面', origin: 'cn', date: '2023-10', params: '未公开', flagship: true, desc: '率先支持 20万+ 长上下文，专注 C 端长文本场景。', tags: ['长上下文', 'C端', '200K'] },
-];
-
-// ===== COMPANY CONFIG =====
-const COMPANIES = {
-  'OpenAI':     { color: '#10b981', logo: 'O',  origin: 'us' },
-  'Google':     { color: '#4285f4', logo: 'G',  origin: 'us' },
-  'Anthropic':  { color: '#d97706', logo: 'A',  origin: 'us' },
-  'Meta':       { color: '#3b82f6', logo: 'M',  origin: 'us' },
-  'Mistral AI': { color: '#8b5cf6', logo: 'Mi', origin: 'eu' },
-  'DeepSeek':   { color: '#06b6d4', logo: 'DS', origin: 'cn' },
-  '阿里巴巴':   { color: '#f97316', logo: '阿', origin: 'cn' },
-  '百度':       { color: '#3b82f6', logo: '百', origin: 'cn' },
-  '字节跳动':   { color: '#14b8a6', logo: '字', origin: 'cn' },
-  '智谱AI':     { color: '#ec4899', logo: '智', origin: 'cn' },
-  '零一万物':   { color: '#a855f7', logo: '零', origin: 'cn' },
-  '小米':       { color: '#f43f5e', logo: '米', origin: 'cn' },
-  '月之暗面':   { color: '#6366f1', logo: '月', origin: 'cn' },
-};
+// ===== DATA LOADING =====
+// Data is loaded from external JSON files (data/models.json, data/companies.json).
+// This separation makes it easy for the community to add/update models via PR.
+let MODELS = [];
+let COMPANIES = {};
 
 const ORIGIN_FLAGS = { us: '🇺🇸', cn: '🇨🇳', eu: '🇪🇺' };
 const ORIGIN_LABELS = { us: '美国', cn: '中国', eu: '欧洲' };
@@ -644,11 +583,28 @@ let activeRegion = 'all';
 let activeCompany = 'all';
 
 // ===== INIT =====
-function init() {
+async function init() {
+  try {
+    const [modelsRes, companiesRes] = await Promise.all([
+      fetch('data/models.json'),
+      fetch('data/companies.json')
+    ]);
+    if (!modelsRes.ok) throw new Error(`models.json: ${modelsRes.status}`);
+    if (!companiesRes.ok) throw new Error(`companies.json: ${companiesRes.status}`);
+    MODELS = await modelsRes.json();
+    COMPANIES = await companiesRes.json();
+  } catch (err) {
+    console.warn('Failed to load data files, using inline fallback…', err);
+    document.getElementById('footerUpdated').textContent = '⚠️ 数据加载失败，请刷新重试';
+  }
+
+  // Read initial filter state from URL hash (#region=cn&company=DeepSeek)
+  readHashState();
   computeTimeRange();
-  renderStats();
+  renderStats();         // Initial global stats
   renderFilters();
   renderTimeline();
+  updateFooter();
 }
 
 let YEAR_MIN, YEAR_MAX, TOTAL_MONTHS;
@@ -671,11 +627,21 @@ function dateToPercent(dateStr) {
   return (monthOffset / TOTAL_MONTHS) * 100;
 }
 
+function getFilteredModels() {
+  return MODELS.filter(m => {
+    if (activeRegion !== 'all' && m.origin !== activeRegion) return false;
+    if (activeCompany !== 'all' && m.company !== activeCompany) return false;
+    return true;
+  });
+}
+
 function renderStats() {
-  document.getElementById('statModels').textContent = MODELS.length;
-  document.getElementById('statCompanies').textContent = Object.keys(COMPANIES).length;
+  const filtered = getFilteredModels();
+  const companies = new Set(filtered.map(m => m.company)).size;
+  document.getElementById('statModels').textContent = filtered.length;
+  document.getElementById('statCompanies').textContent = companies;
   document.getElementById('statYears').textContent = YEAR_MAX - YEAR_MIN;
-  document.getElementById('statChinese').textContent = MODELS.filter(m => m.origin === 'cn').length;
+  document.getElementById('statChinese').textContent = filtered.filter(m => m.origin === 'cn').length;
 }
 
 function renderFilters() {
@@ -697,6 +663,8 @@ function renderFilters() {
       activeRegion = r.key;
       document.querySelectorAll('#regionFilters .filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      updateHash();
+      renderStats();
       renderTimeline();
     };
     regionDiv.appendChild(btn);
@@ -710,6 +678,8 @@ function renderFilters() {
     activeCompany = 'all';
     document.querySelectorAll('#companyFilters .filter-btn').forEach(b => b.classList.remove('active'));
     allBtn.classList.add('active');
+    updateHash();
+    renderStats();
     renderTimeline();
   };
   companyDiv.appendChild(allBtn);
@@ -723,6 +693,8 @@ function renderFilters() {
       activeCompany = name;
       document.querySelectorAll('#companyFilters .filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      updateHash();
+      renderStats();
       renderTimeline();
     };
     companyDiv.appendChild(btn);
@@ -752,11 +724,7 @@ function renderTimeline() {
   yearAxis.style.minWidth = scrollWidth + 'px';
 
   // Filter models
-  const filtered = MODELS.filter(m => {
-    if (activeRegion !== 'all' && m.origin !== activeRegion) return false;
-    if (activeCompany !== 'all' && m.company !== activeCompany) return false;
-    return true;
-  });
+  const filtered = getFilteredModels();
 
   // Group by company
   const companyOrder = Object.keys(COMPANIES);
@@ -837,7 +805,35 @@ function renderTimeline() {
   document.getElementById('timelineScroll').style.minWidth = scrollWidth + 'px';
 }
 
-// ===== TOOLTIP =====
+// ===== URL HASH SYNC =====
+function updateHash() {
+  const params = [];
+  if (activeRegion !== 'all') params.push(`region=${activeRegion}`);
+  if (activeCompany !== 'all') params.push(`company=${encodeURIComponent(activeCompany)}`);
+  const hash = params.length > 0 ? '#' + params.join('&') : '';
+  if (window.location.hash !== hash) {
+    history.replaceState(null, '', hash || window.location.pathname);
+  }
+}
+
+function readHashState() {
+  const hash = window.location.hash.replace('#', '');
+  if (!hash) return;
+  hash.split('&').forEach(pair => {
+    const [key, val] = pair.split('=');
+    if (key === 'region') activeRegion = val;
+    if (key === 'company') activeCompany = decodeURIComponent(val);
+  });
+}
+
+// ===== FOOTER =====
+function updateFooter() {
+  const lastCommit = '2025-06-07'; // Auto-updated via GitHub Actions on deploy
+  document.getElementById('footerUpdated').textContent = `最后更新：${lastCommit}`;
+}
+
+// ===== FILTER HELPER =====
+// (defined above alongside renderStats)
 const tooltip = document.getElementById('tooltip');
 
 function showTooltip(e, model, cfg) {
@@ -883,6 +879,18 @@ function hideTooltip() {
 
 // ===== START =====
 init();
+window.addEventListener('hashchange', () => {
+  readHashState();
+  // Update filter button UI to match hash state
+  document.querySelectorAll('#regionFilters .filter-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent === (activeRegion === 'all' ? '全部' : b.textContent));
+  });
+  document.querySelectorAll('#companyFilters .filter-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.company === activeCompany || (activeCompany === 'all' && b.dataset.company === 'all'));
+  });
+  renderStats();
+  renderTimeline();
+});
 </script>
 
 </body>

@@ -1,0 +1,96 @@
+name: 添加模型
+description: 提交一个新的 LLM 模型信息
+title: "[add model]: "
+labels: ["data", "new model"]
+body:
+  - type: input
+    id: model_name
+    attributes:
+      label: 模型名称
+      description: 模型的正式名称（如 GPT-4o、Claude 3.5 Sonnet）
+      placeholder: "GPT-4o"
+    validations:
+      required: true
+  - type: dropdown
+    id: company
+    attributes:
+      label: 所属公司
+      description: 选择已有公司，或在下面添加新公司
+      options:
+        - OpenAI
+        - Google
+        - Anthropic
+        - Meta
+        - Mistral AI
+        - DeepSeek
+        - 阿里巴巴
+        - 百度
+        - 字节跳动
+        - 智谱AI
+        - 零一万物
+        - 小米
+        - 月之暗面
+        - "🆕 新公司（请在下方填写）"
+    validations:
+      required: true
+  - type: input
+    id: new_company
+    attributes:
+      label: 新公司名称（如选择了已有公司可跳过）
+      placeholder: "xAI"
+  - type: dropdown
+    id: origin
+    attributes:
+      label: 地区
+      options:
+        - "🇺🇸 美国"
+        - "🇨🇳 中国"
+        - "🇪🇺 欧洲"
+        - "其他"
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: 发布日期
+      description: YYYY-MM 格式，如不确定到月份可只写年份
+      placeholder: "2025-03"
+    validations:
+      required: true
+  - type: input
+    id: params
+    attributes:
+      label: 参数规模
+      description: 如"175B"、"未公开"、"236B (21B激活)"
+      placeholder: "未公开"
+  - type: textarea
+    id: description
+    attributes:
+      label: 模型简介
+      description: 1-3句话概述这个模型的关键特点和意义
+      placeholder: "原生多模态模型，支持文本/音频/图像统一处理。"
+    validations:
+      required: true
+  - type: input
+    id: tags
+    attributes:
+      label: 标签
+      description: 用逗号分隔的标签，如 "开源, MoE, 多模态"
+      placeholder: "开源, 编程, 长上下文"
+  - type: checkboxes
+    id: flagship
+    attributes:
+      label: 特性
+      options:
+        - label: 这是该公司旗舰模型
+  - type: input
+    id: source_url
+    attributes:
+      label: 信息来源链接
+      description: 官方博客、论文或权威媒体链接
+      placeholder: "https://openai.com/blog/..."
+  - type: textarea
+    id: extra
+    attributes:
+      label: 补充说明
+      description: 任何其他相关信息
