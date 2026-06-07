@@ -8,7 +8,9 @@
     "params": "117M",
     "flagship": false,
     "desc": "首个基于 Transformer decoder 的生成式预训练模型，开创了 \"预训练+微调\" 范式。",
-    "tags": ["NLP", "预训练", "开创性"]
+    "tags": ["NLP", "预训练", "开创性"],
+    "open_source": false,
+    "modalities": ["text"]
   },
   {
     "id": "gpt2",
@@ -19,7 +21,9 @@
     "params": "1.5B",
     "flagship": false,
     "desc": "因能力过强曾拒绝公开发布，展示了大规模语言模型的文本生成能力。",
-    "tags": ["文本生成", "安全争议"]
+    "tags": ["文本生成", "安全争议"],
+    "open_source": false,
+    "modalities": ["text"]
   },
   {
     "id": "gpt3",
@@ -30,7 +34,9 @@
     "params": "175B",
     "flagship": true,
     "desc": "1750亿参数，首次展示 Few-shot 和 In-context Learning，开启大模型时代。",
-    "tags": ["Few-shot", "In-context Learning", "里程碑"]
+    "tags": ["Few-shot", "In-context Learning", "里程碑"],
+    "open_source": false,
+    "modalities": ["text"]
   },
   {
     "id": "gpt35",
@@ -41,7 +47,9 @@
     "params": "~175B",
     "flagship": false,
     "desc": "ChatGPT 背后的模型，基于 RLHF 对齐，引爆全球 AI 热潮。",
-    "tags": ["ChatGPT", "RLHF", "对话"]
+    "tags": ["ChatGPT", "RLHF", "对话"],
+    "open_source": false,
+    "modalities": ["text"]
   },
   {
     "id": "gpt4",
@@ -52,7 +60,9 @@
     "params": "未公开",
     "flagship": true,
     "desc": "多模态大模型，支持图像输入。在多项考试中达到人类顶尖水平。",
-    "tags": ["多模态", "推理", "标杆"]
+    "tags": ["多模态", "推理", "标杆"],
+    "open_source": false,
+    "modalities": ["text", "image"]
   },
   {
     "id": "gpt4o",
@@ -63,7 +73,9 @@
     "params": "未公开",
     "flagship": false,
     "desc": "原生多模态，文本/音频/图像统一模型，响应速度大幅提升。",
-    "tags": ["原生多模态", "语音", "速度"]
+    "tags": ["原生多模态", "语音", "速度"],
+    "open_source": false,
+    "modalities": ["text", "image", "audio"]
   },
   {
     "id": "o1",
@@ -74,7 +86,9 @@
     "params": "未公开",
     "flagship": true,
     "desc": "推理模型，通过 Chain-of-Thought 推理在数学和编程竞赛中表现突出。",
-    "tags": ["推理", "CoT", "数学"]
+    "tags": ["推理", "CoT", "数学"],
+    "open_source": false,
+    "modalities": ["text"]
   },
   {
     "id": "o3",
@@ -85,7 +99,9 @@
     "params": "未公开",
     "flagship": true,
     "desc": "下一代推理模型，在 ARC-AGI 基准上取得突破性成绩。",
-    "tags": ["推理", "AGI", "突破"]
+    "tags": ["推理", "AGI", "突破"],
+    "open_source": false,
+    "modalities": ["text"]
   },
   {
     "id": "gpt41",
@@ -96,7 +112,9 @@
     "params": "未公开",
     "flagship": false,
     "desc": "编程能力大幅提升，支持 100万 token 上下文窗口。",
-    "tags": ["编程", "长上下文", "1M"]
+    "tags": ["编程", "长上下文", "1M"],
+    "open_source": false,
+    "modalities": ["text", "image"]
   },
   {
     "id": "bert",
@@ -107,7 +125,9 @@
     "params": "340M",
     "flagship": true,
     "desc": "双向编码器，刷新 11 项 NLP 基准。开创了 Encoder 架构的预训练范式。",
-    "tags": ["双向", "Encoder", "NLP基准"]
+    "tags": ["双向", "Encoder", "NLP基准"],
+    "open_source": true,
+    "modalities": ["text"]
   },
   {
     "id": "t5",
@@ -118,7 +138,9 @@
     "params": "11B",
     "flagship": false,
     "desc": "Text-to-Text 统一框架，将所有 NLP 任务统一为文本生成问题。",
-    "tags": ["Text-to-Text", "统一框架"]
+    "tags": ["Text-to-Text", "统一框架"],
+    "open_source": true,
+    "modalities": ["text"]
   },
   {
     "id": "lamda",
@@ -129,7 +151,9 @@
     "params": "137B",
     "flagship": false,
     "desc": "对话专用模型，曾因工程师声称其具有 \"感知能力\" 引发争议。",
-    "tags": ["对话", "争议"]
+    "tags": ["对话", "争议"],
+    "open_source": false,
+    "modalities": ["text"]
   },
   {
     "id": "palm",
@@ -140,7 +164,9 @@
     "params": "540B",
     "flagship": true,
     "desc": "5400亿参数，Pathways 系统训练，展示了强大的推理和代码能力。",
-    "tags": ["Pathways", "推理", "540B"]
+    "tags": ["Pathways", "推理", "540B"],
+    "open_source": false,
+    "modalities": ["text"]
   },
   {
     "id": "palm2",
@@ -151,7 +177,9 @@
     "params": "未公开",
     "flagship": false,
     "desc": "Gemini 前身，在多语言和数学推理上显著进步。",
-    "tags": ["多语言", "数学"]
+    "tags": ["多语言", "数学"],
+    "open_source": false,
+    "modalities": ["text"]
   },
   {
     "id": "gemini1",
@@ -162,7 +190,9 @@
     "params": "未公开",
     "flagship": true,
     "desc": "Google 最强多模态模型，Ultra 版本在多项基准超越 GPT-4。",
-    "tags": ["多模态", "原生", "Ultra"]
+    "tags": ["多模态", "原生", "Ultra"],
+    "open_source": false,
+    "modalities": ["text", "image", "audio"]
   },
   {
     "id": "gemini15",
@@ -173,7 +203,9 @@
     "params": "未公开",
     "flagship": false,
     "desc": "支持最高 200万 token 上下文窗口，长上下文能力业界领先。",
-    "tags": ["2M上下文", "长文本", "MoE"]
+    "tags": ["2M上下文", "长文本", "MoE"],
+    "open_source": false,
+    "modalities": ["text", "image", "audio"]
   },
   {
     "id": "gemini2",
@@ -184,7 +216,9 @@
     "params": "未公开",
     "flagship": false,
     "desc": "支持原生工具调用和多模态输出，Agent 能力大幅提升。",
-    "tags": ["Agent", "工具调用", "多模态输出"]
+    "tags": ["Agent", "工具调用", "多模态输出"],
+    "open_source": false,
+    "modalities": ["text", "image", "audio"]
   },
   {
     "id": "gemini25",
@@ -195,7 +229,9 @@
     "params": "未公开",
     "flagship": true,
     "desc": "Pro 版本在编程和推理基准上登顶，原生思考能力。",
-    "tags": ["思考模型", "编程", "登顶"]
+    "tags": ["思考模型", "编程", "登顶"],
+    "open_source": false,
+    "modalities": ["text", "image", "audio"]
   },
   {
     "id": "claude1",
@@ -206,7 +242,9 @@
     "params": "未公开",
     "flagship": false,
     "desc": "Anthropic 首个商用模型，强调安全性和有帮助性。",
-    "tags": ["Constitutional AI", "安全"]
+    "tags": ["Constitutional AI", "安全"],
+    "open_source": false,
+    "modalities": ["text"]
   },
   {
     "id": "claude2",
@@ -217,7 +255,9 @@
     "params": "未公开",
     "flagship": false,
     "desc": "支持 100K 上下文窗口，长文档处理能力领先。",
-    "tags": ["100K上下文", "长文档"]
+    "tags": ["100K上下文", "长文档"],
+    "open_source": false,
+    "modalities": ["text"]
   },
   {
     "id": "claude3",
@@ -228,7 +268,9 @@
     "params": "未公开",
     "flagship": true,
     "desc": "三档模型（Haiku/Sonnet/Opus），Opus 版本在多数基准追平 GPT-4。",
-    "tags": ["三档", "Opus", "Sonnet", "Haiku"]
+    "tags": ["三档", "Opus", "Sonnet", "Haiku"],
+    "open_source": false,
+    "modalities": ["text", "image"]
   },
   {
     "id": "claude35",
@@ -239,7 +281,9 @@
     "params": "未公开",
     "flagship": false,
     "desc": "性价比标杆，编程能力出众，Artifacts 功能广受好评。",
-    "tags": ["编程", "Artifacts", "性价比"]
+    "tags": ["编程", "Artifacts", "性价比"],
+    "open_source": false,
+    "modalities": ["text", "image"]
   },
   {
     "id": "claude4",
@@ -250,7 +294,9 @@
     "params": "未公开",
     "flagship": true,
     "desc": "Opus 4 和 Sonnet 4，长时间 Agent 任务和编程推理能力大幅提升。",
-    "tags": ["Agent", "编程", "Opus 4"]
+    "tags": ["Agent", "编程", "Opus 4"],
+    "open_source": false,
+    "modalities": ["text", "image"]
   },
   {
     "id": "llama1",
@@ -261,7 +307,9 @@
     "params": "65B",
     "flagship": true,
     "desc": "开源大模型的开端，小模型高质量，引爆开源社区。",
-    "tags": ["开源", "里程碑", "65B"]
+    "tags": ["开源", "里程碑", "65B"],
+    "open_source": true,
+    "modalities": ["text"]
   },
   {
     "id": "llama2",
@@ -272,7 +320,9 @@
     "params": "70B",
     "flagship": false,
     "desc": "开放商用，70B 版本性能接近 GPT-3.5，奠定开源生态基础。",
-    "tags": ["开源商用", "70B", "RLHF"]
+    "tags": ["开源商用", "70B", "RLHF"],
+    "open_source": true,
+    "modalities": ["text"]
   },
   {
     "id": "llama3",
@@ -283,7 +333,9 @@
     "params": "405B",
     "flagship": true,
     "desc": "405B 最大开源模型，支持 128K 上下文，多语言能力提升。",
-    "tags": ["开源", "405B", "128K"]
+    "tags": ["开源", "405B", "128K"],
+    "open_source": true,
+    "modalities": ["text"]
   },
   {
     "id": "llama4",
@@ -294,7 +346,9 @@
     "params": "未公开",
     "flagship": true,
     "desc": "Scout（16专家MoE，10M上下文）和 Maverick，转向多模态和MoE架构。",
-    "tags": ["MoE", "多模态", "10M上下文"]
+    "tags": ["MoE", "多模态", "10M上下文"],
+    "open_source": true,
+    "modalities": ["text", "image"]
   },
   {
     "id": "mistral7b",
@@ -305,7 +359,9 @@
     "params": "7B",
     "flagship": true,
     "desc": "欧洲之光，7B 参数超越 LLaMA 2 13B，Sliding Window Attention。",
-    "tags": ["小模型", "Sliding Window", "欧洲"]
+    "tags": ["小模型", "Sliding Window", "欧洲"],
+    "open_source": true,
+    "modalities": ["text"]
   },
   {
     "id": "mixtral",
@@ -316,7 +372,9 @@
     "params": "46.7B",
     "flagship": false,
     "desc": "开源 MoE 架构，8 个专家激活 2 个，效率与性能兼得。",
-    "tags": ["MoE", "开源", "高效"]
+    "tags": ["MoE", "开源", "高效"],
+    "open_source": true,
+    "modalities": ["text"]
   },
   {
     "id": "mistral_large",
@@ -327,7 +385,9 @@
     "params": "未公开",
     "flagship": false,
     "desc": "闭源旗舰，多语言支持，对标 GPT-4 级别。",
-    "tags": ["闭源", "多语言"]
+    "tags": ["闭源", "多语言"],
+    "open_source": false,
+    "modalities": ["text"]
   },
   {
     "id": "codestral",
@@ -338,7 +398,9 @@
     "params": "未公开",
     "flagship": false,
     "desc": "代码专用模型，支持 80+ 编程语言。",
-    "tags": ["代码", "80+语言"]
+    "tags": ["代码", "80+语言"],
+    "open_source": true,
+    "modalities": ["text"]
   },
   {
     "id": "deepseek1",
@@ -349,7 +411,9 @@
     "params": "67B",
     "flagship": false,
     "desc": "深度求索首个开源大模型，代码和数学能力突出。",
-    "tags": ["开源", "代码", "数学"]
+    "tags": ["开源", "代码", "数学"],
+    "open_source": true,
+    "modalities": ["text"]
   },
   {
     "id": "deepseek2",
@@ -360,7 +424,9 @@
     "params": "236B (21B激活)",
     "flagship": true,
     "desc": "MLA 注意力机制 + DeepSeekMoE，推理成本降低 93%。",
-    "tags": ["MLA", "MoE", "低成本"]
+    "tags": ["MLA", "MoE", "低成本"],
+    "open_source": true,
+    "modalities": ["text"]
   },
   {
     "id": "deepseek3",
@@ -371,7 +437,9 @@
     "params": "671B (37B激活)",
     "flagship": true,
     "desc": "训练成本仅 557 万美元，性能媲美 GPT-4o，震惊全球。",
-    "tags": ["低成本", "媲美GPT-4", "MoE"]
+    "tags": ["低成本", "媲美GPT-4", "MoE"],
+    "open_source": true,
+    "modalities": ["text"]
   },
   {
     "id": "deepseekr1",
@@ -382,7 +450,9 @@
     "params": "671B",
     "flagship": true,
     "desc": "开源推理模型，纯 RL 训练出 CoT 推理能力，性能对标 o1。",
-    "tags": ["推理", "RL", "开源", "对标o1"]
+    "tags": ["推理", "RL", "开源", "对标o1"],
+    "open_source": true,
+    "modalities": ["text"]
   },
   {
     "id": "qwen1",
@@ -393,7 +463,9 @@
     "params": "72B",
     "flagship": true,
     "desc": "阿里首个开源大模型系列，覆盖 7B-72B，中英文能力均衡。",
-    "tags": ["开源", "中英双语"]
+    "tags": ["开源", "中英双语"],
+    "open_source": true,
+    "modalities": ["text"]
   },
   {
     "id": "qwen15",
@@ -404,7 +476,9 @@
     "params": "72B",
     "flagship": false,
     "desc": "改进版，支持更多语言和更长上下文。",
-    "tags": ["多语言", "长上下文"]
+    "tags": ["多语言", "长上下文"],
+    "open_source": true,
+    "modalities": ["text"]
   },
   {
     "id": "qwen2",
@@ -415,7 +489,9 @@
     "params": "72B",
     "flagship": false,
     "desc": "性能全面对标 LLaMA 3，支持 128K 上下文。",
-    "tags": ["128K", "对标LLaMA 3"]
+    "tags": ["128K", "对标LLaMA 3"],
+    "open_source": true,
+    "modalities": ["text"]
   },
   {
     "id": "qwen25",
@@ -426,7 +502,9 @@
     "params": "72B",
     "flagship": true,
     "desc": "全面升级，代码/数学/中文能力大幅提升，多模态版本齐发。",
-    "tags": ["代码", "数学", "多模态"]
+    "tags": ["代码", "数学", "多模态"],
+    "open_source": true,
+    "modalities": ["text", "image"]
   },
   {
     "id": "qwen3",
@@ -437,7 +515,9 @@
     "params": "235B (22B激活)",
     "flagship": true,
     "desc": "开源 MoE 旗舰，支持思考模式切换，200+ 国家语言。",
-    "tags": ["MoE", "思考模式", "200+语言"]
+    "tags": ["MoE", "思考模式", "200+语言"],
+    "open_source": true,
+    "modalities": ["text", "image"]
   },
   {
     "id": "ernie3",
@@ -448,7 +528,9 @@
     "params": "260B",
     "flagship": true,
     "desc": "百度文心大模型，知识增强预训练，中文理解能力突出。",
-    "tags": ["知识增强", "中文"]
+    "tags": ["知识增强", "中文"],
+    "open_source": false,
+    "modalities": ["text"]
   },
   {
     "id": "ernie35",
@@ -459,7 +541,9 @@
     "params": "未公开",
     "flagship": false,
     "desc": "百度对标 ChatGPT 的产品，国内最早一批大模型对话产品。",
-    "tags": ["对话", "国内首发"]
+    "tags": ["对话", "国内首发"],
+    "open_source": false,
+    "modalities": ["text"]
   },
   {
     "id": "ernie4",
@@ -470,7 +554,9 @@
     "params": "未公开",
     "flagship": true,
     "desc": "百度最强基座模型，理解/生成/推理/记忆能力全面提升。",
-    "tags": ["全能", "提升"]
+    "tags": ["全能", "提升"],
+    "open_source": false,
+    "modalities": ["text"]
   },
   {
     "id": "ernie45",
@@ -481,7 +567,9 @@
     "params": "未公开",
     "flagship": false,
     "desc": "MoE 架构，原生多模态，开源版本发布。",
-    "tags": ["MoE", "多模态", "开源"]
+    "tags": ["MoE", "多模态", "开源"],
+    "open_source": true,
+    "modalities": ["text", "image"]
   },
   {
     "id": "doubao",
@@ -492,7 +580,9 @@
     "params": "未公开",
     "flagship": true,
     "desc": "字节跳动旗下，主打低价格高性能，日均调用量破亿。",
-    "tags": ["低价", "高调用量", "火山引擎"]
+    "tags": ["低价", "高调用量", "火山引擎"],
+    "open_source": false,
+    "modalities": ["text", "image"]
   },
   {
     "id": "doubao15",
@@ -503,7 +593,9 @@
     "params": "未公开",
     "flagship": false,
     "desc": "推理模型 Doubao-1.5-pro，思考能力大幅提升。",
-    "tags": ["推理", "Pro"]
+    "tags": ["推理", "Pro"],
+    "open_source": false,
+    "modalities": ["text", "image"]
   },
   {
     "id": "chatglm",
@@ -514,7 +606,9 @@
     "params": "6B",
     "flagship": true,
     "desc": "清华团队，首个开源中文对话模型，GLM 架构。",
-    "tags": ["开源", "中文", "GLM架构"]
+    "tags": ["开源", "中文", "GLM架构"],
+    "open_source": true,
+    "modalities": ["text"]
   },
   {
     "id": "glm4",
@@ -525,7 +619,9 @@
     "params": "未公开",
     "flagship": true,
     "desc": "多模态版本齐全，对标 GPT-4 级别，支持工具调用。",
-    "tags": ["多模态", "工具调用"]
+    "tags": ["多模态", "工具调用"],
+    "open_source": false,
+    "modalities": ["text", "image"]
   },
   {
     "id": "yi",
@@ -536,7 +632,9 @@
     "params": "34B",
     "flagship": true,
     "desc": "李开复创办，Yi-34B 发布即登顶开源排行榜。",
-    "tags": ["开源", "李开复", "登顶"]
+    "tags": ["开源", "李开复", "登顶"],
+    "open_source": true,
+    "modalities": ["text"]
   },
   {
     "id": "mimo",
@@ -547,7 +645,9 @@
     "params": "未公开",
     "flagship": false,
     "desc": "小米自研大模型，Mimo-v2.5 系列覆盖推理/对话/TTS，走性价比路线。",
-    "tags": ["小米", "性价比", "TTS"]
+    "tags": ["小米", "性价比", "TTS"],
+    "open_source": true,
+    "modalities": ["text", "image"]
   },
   {
     "id": "kimi",
@@ -558,6 +658,8 @@
     "params": "未公开",
     "flagship": true,
     "desc": "率先支持 20万+ 长上下文，专注 C 端长文本场景。",
-    "tags": ["长上下文", "C端", "200K"]
+    "tags": ["长上下文", "C端", "200K"],
+    "open_source": false,
+    "modalities": ["text"]
   }
 ]
