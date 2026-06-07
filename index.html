@@ -2102,13 +2102,22 @@ function bindEvents() {
     applyZoomWithFocus(oldPx, centerClientX);
   };
 
-  // Mouse wheel zoom
+  // Ctrl+wheel zoom (only when Ctrl held)
   timelineView.addEventListener('wheel', (e) => {
-    e.preventDefault();
+    if (!e.ctrlKey) return; // let normal scroll pass through
+    e.preventDefault(); // block browser page zoom
     const oldPx = currentPxPerMonth;
     const delta = -e.deltaY * 0.0015;
     zoomNorm = Math.max(0, Math.min(1, zoomNorm + delta));
     applyZoomWithFocus(oldPx, e.clientX);
+  }, { passive: false });
+
+  // Also block browser's native Ctrl+scroll zoom on the whole page
+  // when mouse is over the timeline area
+  document.addEventListener('wheel', (e) => {
+    if (e.ctrlKey && timelineView.contains(e.target)) {
+      e.preventDefault();
+    }
   }, { passive: false });
 
   // Click-drag pan
