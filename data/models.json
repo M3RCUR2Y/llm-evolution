@@ -1526,5 +1526,109 @@
       "text",
       "image"
     ]
+  },
+  {
+    "id": "mimo_v2_pro",
+    "name": "MiMo-V2-Pro",
+    "company": "小米",
+    "origin": "cn",
+    "date": "2026-03",
+    "params": "未公开",
+    "flagship": false,
+    "desc": "小米面向复杂推理任务的旗舰模型，1M 上下文，主打 Agent 能力。",
+    "tags": [
+      "推理",
+      "Agent",
+      "1M上下文"
+    ],
+    "open_source": false,
+    "modalities": [
+      "text"
+    ]
+  },
+  {
+    "id": "mimo_v25",
+    "name": "MiMo-V2.5",
+    "company": "小米",
+    "origin": "cn",
+    "date": "2026-04",
+    "params": "未公开",
+    "flagship": false,
+    "desc": "小米全模态基座模型，支持视觉与音频端到端推理，MIT 协议开源。",
+    "tags": [
+      "开源",
+      "多模态",
+      "MIT"
+    ],
+    "open_source": true,
+    "modalities": [
+      "text",
+      "image",
+      "audio"
+    ]
+  },
+  {
+    "id": "mimo_v25_pro",
+    "name": "MiMo-V2.5-Pro",
+    "company": "小米",
+    "origin": "cn",
+    "date": "2026-04",
+    "params": "未公开",
+    "flagship": true,
+    "desc": "小米迄今最强模型，主打通用智能体、复杂软件工程和长程任务。",
+    "tags": [
+      "旗舰",
+      "Agent",
+      "软件工程"
+    ],
+    "open_source": false,
+    "modalities": [
+      "text",
+      "image",
+      "audio"
+    ]
+  },
+  {
+    "id": "gpt55",
+    "name": "GPT-5.5",
+    "company": "OpenAI",
+    "origin": "us",
+    "date": "2026-04",
+    "params": "未公开",
+    "flagship": true,
+    "desc": "OpenAI 新一代旗舰模型，定位'面向真实工作的全新智能层级'，推理和编程能力大幅提升。",
+    "tags": [
+      "旗舰",
+      "推理",
+      "编程"
+    ],
+    "open_source": false,
+    "modalities": [
+      "text",
+      "image",
+      "audio"
+    ]
+  },
+  {
+    "id": "gpt6",
+    "name": "GPT-6",
+    "company": "OpenAI",
+    "origin": "us",
+    "date": "2026-04",
+    "params": "5-6T (MoE)",
+    "flagship": true,
+    "desc": "采用 5-6 万亿参数 MoE 架构，支持 200万 token 上下文和原生多模态，性能提升 40%。",
+    "tags": [
+      "MoE",
+      "2M上下文",
+      "多模态",
+      "旗舰"
+    ],
+    "open_source": false,
+    "modalities": [
+      "text",
+      "image",
+      "audio"
+    ]
   }
 ]
