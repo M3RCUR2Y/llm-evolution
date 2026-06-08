@@ -2467,6 +2467,19 @@
     ]
   },
   {
+    "id": "step35flash",
+    "name": "Step-3.5-Flash",
+    "company": "StepFun",
+    "origin": "cn",
+    "date": "2026-02",
+    "params": "196B (11B激活)",
+    "flagship": false,
+    "desc": "阶跃星辰 MoE 高效模型，196B 总参数中仅 11B 激活，性价比突出。",
+    "tags": ["MoE", "高效", "开源", "Apache"],
+    "open_source": true,
+    "modalities": ["text"]
+  },
+  {
     "id": "minimax-m25",
     "name": "MiniMax-M2.5",
     "company": "MiniMax",
@@ -2491,7 +2504,7 @@
     "company": "小米",
     "origin": "cn",
     "date": "2026-03",
-    "params": "未公开",
+    "params": "1T (43B激活)",
     "flagship": false,
     "desc": "小米面向复杂推理任务的旗舰模型，1M 上下文，主打 Agent 能力。",
     "tags": [
@@ -2843,5 +2856,18 @@
       "text",
       "image"
     ]
+  },
+  {
+    "id": "step37flash",
+    "name": "Step 3.7 Flash",
+    "company": "StepFun",
+    "origin": "cn",
+    "date": "2026-05",
+    "params": "198B",
+    "flagship": false,
+    "desc": "阶跃星辰最新 MoE 快速模型，198B 参数，Apache 2.0 开源。",
+    "tags": ["MoE", "高效", "开源", "Apache"],
+    "open_source": true,
+    "modalities": ["text"]
   }
 ]

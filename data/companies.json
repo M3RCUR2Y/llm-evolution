@@ -98,5 +98,10 @@
     "color": "#FF6B35",
     "logo": "M",
     "origin": "cn"
+  },
+  "StepFun": {
+    "color": "#22c55e",
+    "logo": "St",
+    "origin": "cn"
   }
 }
