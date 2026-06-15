@@ -2014,6 +2014,25 @@
     ]
   },
   {
+    "id": "sarvam-m",
+    "name": "Sarvam-M",
+    "company": "Sarvam AI",
+    "origin": "other",
+    "date": "2025-05",
+    "params": "24B",
+    "flagship": true,
+    "desc": "印度AI公司Sarvam开源模型，Apache 2.0。",
+    "tags": [
+      "开源",
+      "印度",
+      "Apache"
+    ],
+    "open_source": true,
+    "modalities": [
+      "text"
+    ]
+  },
+  {
     "id": "kimi-k2",
     "name": "Kimi K2",
     "company": "月之暗面",
@@ -2089,6 +2108,26 @@
     "modalities": [
       "text",
       "image"
+    ]
+  },
+  {
+    "id": "param-1",
+    "name": "Param-1",
+    "company": "BharatGen",
+    "origin": "other",
+    "date": "2025-07",
+    "params": "2.9B",
+    "flagship": false,
+    "desc": "印度BharatGen开源模型，5T tokens训练，Apache 2.0。",
+    "tags": [
+      "开源",
+      "印度",
+      "小模型",
+      "Apache"
+    ],
+    "open_source": true,
+    "modalities": [
+      "text"
     ]
   },
   {
@@ -2249,6 +2288,44 @@
     ]
   },
   {
+    "id": "apertus",
+    "name": "Apertus",
+    "company": "ETH Zurich",
+    "origin": "eu",
+    "date": "2025-09",
+    "params": "70B",
+    "flagship": true,
+    "desc": "苏黎世联邦理工与洛桑联邦理工联合开源模型，15T tokens训练，Apache 2.0。",
+    "tags": [
+      "开源",
+      "学术",
+      "Apache",
+      "欧洲"
+    ],
+    "open_source": true,
+    "modalities": [
+      "text"
+    ]
+  },
+  {
+    "id": "alice-ai-llm1",
+    "name": "Alice AI LLM 1.0",
+    "company": "Yandex",
+    "origin": "other",
+    "date": "2025-10",
+    "params": "未公开",
+    "flagship": false,
+    "desc": "Yandex基于YandexGPT架构的商用模型。",
+    "tags": [
+      "商用",
+      "俄罗斯"
+    ],
+    "open_source": false,
+    "modalities": [
+      "text"
+    ]
+  },
+  {
     "id": "gemini3",
     "name": "Gemini 3",
     "company": "Google",
@@ -2288,6 +2365,25 @@
     "modalities": [
       "text",
       "image"
+    ]
+  },
+  {
+    "id": "olmo3",
+    "name": "OLMo 3",
+    "company": "Allen Institute for AI",
+    "origin": "us",
+    "date": "2025-11",
+    "params": "32B",
+    "flagship": false,
+    "desc": "Allen AI第三代开源语言模型，5.9T tokens训练，Apache 2.0。",
+    "tags": [
+      "开源",
+      "研究",
+      "Apache"
+    ],
+    "open_source": true,
+    "modalities": [
+      "text"
     ]
   },
   {
@@ -2475,9 +2571,16 @@
     "params": "196B (11B激活)",
     "flagship": false,
     "desc": "阶跃星辰 MoE 高效模型，196B 总参数中仅 11B 激活，性价比突出。",
-    "tags": ["MoE", "高效", "开源", "Apache"],
+    "tags": [
+      "MoE",
+      "高效",
+      "开源",
+      "Apache"
+    ],
     "open_source": true,
-    "modalities": ["text"]
+    "modalities": [
+      "text"
+    ]
   },
   {
     "id": "minimax-m25",
@@ -2866,8 +2969,37 @@
     "params": "198B",
     "flagship": false,
     "desc": "阶跃星辰最新 MoE 快速模型，198B 参数，Apache 2.0 开源。",
-    "tags": ["MoE", "高效", "开源", "Apache"],
+    "tags": [
+      "MoE",
+      "高效",
+      "开源",
+      "Apache"
+    ],
     "open_source": true,
-    "modalities": ["text"]
+    "modalities": [
+      "text"
+    ]
+  },
+  {
+    "id": "claude-fable5",
+    "name": "Claude Fable 5",
+    "company": "Anthropic",
+    "origin": "us",
+    "date": "2026-06",
+    "params": "未公开",
+    "flagship": true,
+    "desc": "Anthropic首个Mythos级模型，全面超越此前所有Claude模型，在软件工程、科研、视觉等领域SOTA。9天后因安全顾虑暂停访问。",
+    "tags": [
+      "Mythos级",
+      "旗舰",
+      "SOTA",
+      "软件工程",
+      "Agent"
+    ],
+    "open_source": false,
+    "modalities": [
+      "text",
+      "image"
+    ]
   }
 ]

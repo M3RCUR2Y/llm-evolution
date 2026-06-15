@@ -103,5 +103,30 @@
     "color": "#22c55e",
     "logo": "St",
     "origin": "cn"
+  },
+  "Allen Institute for AI": {
+    "color": "#e11d48",
+    "logo": "Ai2",
+    "origin": "us"
+  },
+  "ETH Zurich": {
+    "color": "#1e3a5f",
+    "logo": "ETH",
+    "origin": "eu"
+  },
+  "Sarvam AI": {
+    "color": "#7c3aed",
+    "logo": "Sa",
+    "origin": "other"
+  },
+  "BharatGen": {
+    "color": "#ea580c",
+    "logo": "BG",
+    "origin": "other"
+  },
+  "Yandex": {
+    "color": "#fc3f1d",
+    "logo": "Ya",
+    "origin": "other"
   }
 }
