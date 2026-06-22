@@ -2602,6 +2602,47 @@
     ]
   },
   {
+    "id": "param2",
+    "name": "Param-2",
+    "company": "BharatGen",
+    "origin": "other",
+    "date": "2026-02",
+    "params": "17B",
+    "flagship": false,
+    "desc": "印度首个 MoE 开源基础模型，Param-1 后续，支持更多印度语言，H100 训练 24 天。",
+    "tags": [
+      "开源",
+      "MoE",
+      "印度语言",
+      "基础模型"
+    ],
+    "open_source": true,
+    "modalities": [
+      "text"
+    ]
+  },
+  {
+    "id": "sarvam-105b",
+    "name": "Sarvam-105B",
+    "company": "Sarvam AI",
+    "origin": "other",
+    "date": "2026-02",
+    "params": "105B (10.3B激活)",
+    "flagship": true,
+    "desc": "印度首个独立训练的基础模型，MoE 架构，支持印度语言和 Hinglish。同时开源 30B 版本。",
+    "tags": [
+      "开源",
+      "MoE",
+      "印度",
+      "基础模型",
+      "Hinglish"
+    ],
+    "open_source": true,
+    "modalities": [
+      "text"
+    ]
+  },
+  {
     "id": "mimo_v2_pro",
     "name": "MiMo-V2-Pro",
     "company": "小米",
@@ -2899,6 +2940,26 @@
     ]
   },
   {
+    "id": "kimi-k26",
+    "name": "Kimi K2.6",
+    "company": "月之暗面",
+    "origin": "cn",
+    "date": "2026-04",
+    "params": "1T (32B激活)",
+    "flagship": false,
+    "desc": "开源 Agentic 模型，支持 1000 个并行子 Agent 协作，可连续 13 小时编码、5 天自主运行。",
+    "tags": [
+      "开源",
+      "Agent Swarm",
+      "MoE",
+      "长程任务"
+    ],
+    "open_source": true,
+    "modalities": [
+      "text"
+    ]
+  },
+  {
     "id": "gemini35-flash",
     "name": "Gemini 3.5 Flash",
     "company": "Google",
@@ -3000,6 +3061,48 @@
     "modalities": [
       "text",
       "image"
+    ]
+  },
+  {
+    "id": "glm52",
+    "name": "GLM-5.2",
+    "company": "智谱AI",
+    "origin": "cn",
+    "date": "2026-06",
+    "params": "744B (40B激活)",
+    "flagship": true,
+    "desc": "长程任务旗舰，1M 上下文窗口，IndexShare 架构降低 2.9× FLOPs。在 FrontierSWE 等基准上逼近 Opus 4.8，超越 GPT-5.5。",
+    "tags": [
+      "开源",
+      "MoE",
+      "1M上下文",
+      "长程任务",
+      "Agent",
+      "IndexShare"
+    ],
+    "open_source": true,
+    "modalities": [
+      "text"
+    ]
+  },
+  {
+    "id": "kimi-k27-code",
+    "name": "Kimi K2.7 Code",
+    "company": "月之暗面",
+    "origin": "cn",
+    "date": "2026-06",
+    "params": "1T (32B激活)",
+    "flagship": false,
+    "desc": "Kimi 系列最强编码模型，开源发布，低 Token 消耗，编码性能为 Kimi 系列最佳。",
+    "tags": [
+      "开源",
+      "代码",
+      "MoE",
+      "高效"
+    ],
+    "open_source": true,
+    "modalities": [
+      "text"
     ]
   }
 ]
