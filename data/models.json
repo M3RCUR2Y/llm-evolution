@@ -3104,5 +3104,26 @@
     "modalities": [
       "text"
     ]
+  },
+  {
+    "id": "gpt56-sol",
+    "name": "GPT-5.6 Sol",
+    "company": "OpenAI",
+    "origin": "us",
+    "date": "2026-06",
+    "params": "未公开",
+    "flagship": true,
+    "desc": "OpenAI 最新旗舰模型，引入 max 深度推理和 ultra 子代理模式。Terminal-Bench 2.1 SOTA，网络安全与生物学能力大幅提升。含 Sol/Terra/Luna 三档。Preview 阶段。",
+    "tags": [
+      "旗舰",
+      "Agent",
+      "推理",
+      "网络安全",
+      "Preview"
+    ],
+    "open_source": false,
+    "modalities": [
+      "text"
+    ]
   }
 ]
